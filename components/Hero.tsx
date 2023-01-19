@@ -3,7 +3,7 @@ import React from 'react';
 export default function Hero() {
   return (
     <div
-      className="hero min-h-[65vh] my-4 rounded-box overflow-hidden"
+      className="hero min-h-[65vh] my-4 sm:rounded-box overflow-hidden"
       style={{
         backgroundImage: `url("https://wallpapercave.com/wp/wp10985103.jpg")`,
       }}
