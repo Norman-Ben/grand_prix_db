@@ -1,6 +1,8 @@
 import Head from 'next/head';
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
+import News from '@/components/News';
+
 export default function Home() {
   return (
     <>
@@ -13,6 +15,7 @@ export default function Home() {
       <div className="container mx-auto">
         <Navbar />
         <Hero />
+        <News />
       </div>
     </>
   );
