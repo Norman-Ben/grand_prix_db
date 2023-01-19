@@ -36,8 +36,8 @@ export default function Navbar() {
       </div>
 
       <ul
-        className={`menu bg-base-300 w-56 rounded-box ${
-          isOpen ? 'absolute' : 'hidden'
+        className={`menu bg-base-300 w-56 rounded-box transform transition-all duration-1000 ease-in-out ${
+          isOpen ? 'absolute translate-y-0' : '-translate-y-[50vh]'
         }`}
       >
         <li>
