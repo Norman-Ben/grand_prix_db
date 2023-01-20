@@ -1,7 +1,9 @@
 import { useState, useEffect } from 'react';
+import { themeChange } from 'theme-change';
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const [theme, setTheme] = useState('dark');
 
   function toggleMenu() {
     setIsOpen(!isOpen);
@@ -20,6 +22,10 @@ export default function Navbar() {
       document.removeEventListener('click', handleClickOutside);
     };
   }, []);
+
+  useEffect(() => {
+    themeChange(false);
+  });
 
   return (
     <>
@@ -46,7 +52,20 @@ export default function Navbar() {
             Grand Prix<span className="text-info">.DB</span>
           </a>
         </div>
-        <div className="flex-none"></div>
+        <div className="flex-none">
+          <label>
+            Select Theme:
+            <select
+              data-choose-theme
+              value={theme}
+              onChange={(event) => setTheme(event.target.value)}
+            >
+              <option value="">OS Default</option>
+              <option value="dark">Dark</option>
+              <option value="emerald">Light</option>
+            </select>
+          </label>
+        </div>
       </div>
 
       <ul
