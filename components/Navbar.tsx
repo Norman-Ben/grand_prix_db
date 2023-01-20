@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -6,6 +6,20 @@ export default function Navbar() {
   function toggleMenu() {
     setIsOpen(!isOpen);
   }
+
+  useEffect(() => {
+    const handleClickOutside = (event: any) => {
+      if (event.target.closest('.menu') || event.target.closest('.btn')) {
+        return;
+      }
+      setIsOpen(false);
+    };
+
+    document.addEventListener('click', handleClickOutside);
+    return () => {
+      document.removeEventListener('click', handleClickOutside);
+    };
+  }, []);
 
   return (
     <>
