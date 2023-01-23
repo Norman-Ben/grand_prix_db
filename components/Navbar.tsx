@@ -52,8 +52,8 @@ export default function Navbar() {
             Grand Prix<span className="text-info">.DB</span>
           </a>
         </div>
-        <div className="flex-none">
-          <label>
+        <div className="flex-none max-w-[100px]">
+          <label className="">
             Select Theme:
             <select
               data-choose-theme
@@ -69,8 +69,8 @@ export default function Navbar() {
       </div>
 
       <ul
-        className={`menu bg-base-300 w-56 rounded-box transform transition-all duration-700 ease-in-out absolute ${
-          isOpen ? 'translate-y-0' : '-translate-y-[50vh]'
+        className={`menu bg-base-300 w-56 rounded-box z-10 transform transition-all duration-700 ease-in-out absolute ${
+          isOpen ? 'translate-y-0' : '-translate-y-[100vh]'
         }`}
       >
         <li>
