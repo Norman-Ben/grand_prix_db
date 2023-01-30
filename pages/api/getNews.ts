@@ -20,13 +20,8 @@ export default async function getNews(res: any) {
       method: 'GET',
       headers: {
         'X-BingApis-SDK': 'true',
-<<<<<<< HEAD
         'X-RapidAPI-Key': process.env.X_RapidAPI_Key,
         'X-RapidAPI-Host': process.env.X_RapidAPI_Host,
-=======
-        'X-RapidAPI-Key': 'd9067d268fmsh141632809016681p1983a2jsn7498276439f8',
-        'X-RapidAPI-Host': 'bing-news-search1.p.rapidapi.com',
->>>>>>> 09e162dfe51b27579286f7507a60f9f17cb7c931
       },
     };
 
@@ -49,11 +44,7 @@ export default async function getNews(res: any) {
 
     const id = await newsRepository.save(newNews);
 
-<<<<<<< HEAD
     console.log(id);
-=======
-    // console.log(id);
->>>>>>> 09e162dfe51b27579286f7507a60f9f17cb7c931
     await newsRepository.expire(id, 600);
   } else {
     const newsCache = await client.execute(['KEYS', 'News:*']);
