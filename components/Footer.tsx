@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 
 export default function Footer() {
   let date = new Date().getFullYear();
@@ -6,9 +7,9 @@ export default function Footer() {
   return (
     <footer className="footer footer-center p-10 bg-base-200 text-base-content rounded sm:rounded-box my-4">
       <div className="grid grid-flow-col gap-4">
-        <a className="link link-hover">F1 News</a>
-        <a className="link link-hover">Current Season</a>
-        <a className="link link-hover">Previous Seasons</a>
+        <Link href="/">F1 News</Link>
+        <Link href="/2022season">2022 Season</Link>
+        <Link href="/db">Previous Seasons DB</Link>
       </div>
 
       <div>

@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { themeChange } from 'theme-change';
+import Link from 'next/link';
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -74,13 +75,13 @@ export default function Navbar() {
         }`}
       >
         <li>
-          <a>F1 News</a>
+          <Link href="/">F1 News</Link>
         </li>
         <li>
-          <a>Current Season</a>
+          <Link href="/2022season">2022 Season</Link>
         </li>
         <li>
-          <a>Previous Seasons</a>
+          <Link href="/db">Previous Seasons DB</Link>
         </li>
       </ul>
     </>
