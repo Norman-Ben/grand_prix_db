@@ -5,6 +5,16 @@ import News from '@/components/News';
 import Footer from '@/components/Footer';
 
 export default function Home() {
+  const homeHeroProps = {
+    title: (
+      <div>
+        Grand Prix<span className="text-info">.DB</span>
+      </div>
+    ),
+    img: 'https://wallpapercave.com/wp/wp10985103.jpg',
+    description: 'The Formula 1 database for all F1 news and statistics.',
+  };
+
   return (
     <>
       <Head>
@@ -15,7 +25,11 @@ export default function Home() {
       </Head>
       <div className="container mx-auto">
         <Navbar />
-        <Hero />
+        <Hero
+          title={homeHeroProps.title}
+          img={homeHeroProps.img}
+          description={homeHeroProps.description}
+        />
         <News />
         <Footer />
       </div>
