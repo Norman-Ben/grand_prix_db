@@ -2,7 +2,7 @@ import React from 'react';
 
 export default function NewsCard() {
   function handler(res: any) {
-    fetch('/api/getNews')
+    fetch('/api/getRaceCalendar')
       .then((res) => res.json())
       .then((data) => console.log(data));
   }
