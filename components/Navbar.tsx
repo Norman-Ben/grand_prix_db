@@ -49,9 +49,9 @@ export default function Navbar() {
           </button>
         </div>
         <div className="flex-1">
-          <a className="btn btn-ghost normal-case text-xl">
+          <Link href="/" className="btn btn-ghost normal-case text-xl">
             Grand Prix<span className="text-info">.DB</span>
-          </a>
+          </Link>
         </div>
         <div className="flex-none max-w-[100px]">
           <label className="">
