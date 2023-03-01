@@ -3,7 +3,7 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import SelectionGrid from '@/components/SelectionGrid';
 import Hero from '@/components/Hero';
-import { twentyTwoHeroProps } from '@/constants/heros';
+import { twentyTwoHeroProps } from '@/constants/heroes';
 import { twentyTwoSelectionCards } from '@/constants/selectionCards';
 
 export default function TwentyTwoSeason() {

@@ -53,6 +53,7 @@ export default function RaceCalendarResults() {
                 <button className="btn btn-primary btn-xs">Results</button>
               </th>
             </tr>
+            {/* Map though data object and add a table row for each */}
           </tbody>
           {/* <!-- foot --> */}
           <tfoot>
