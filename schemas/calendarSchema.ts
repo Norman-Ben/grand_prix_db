@@ -1,11 +1,7 @@
 import mongoose from 'mongoose';
 
 const calendarSchema = new mongoose.Schema({
-  name: String,
-  circuit: String,
-  laps: Number,
-  distance: Number,
-  date: Date,
+  calendarObj: mongoose.Schema.Types.Mixed,
 });
 
 const calendarModel =
