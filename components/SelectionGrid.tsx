@@ -1,8 +1,22 @@
 import React from 'react';
 import SelectionCard from './SelectionCard';
 
-export default function SelectionGrid({ cardProps }) {
-  console.log(cardProps);
+interface CardProps {
+  title: string;
+  imgUrl: string;
+  btnText: string;
+  link: string;
+}
+
+interface SelectionGridProps {
+  cardProps: {
+    DriverStandings: CardProps;
+    ConstructorStandings: CardProps;
+    RaceCalendar: CardProps;
+  };
+}
+
+export default function SelectionGrid({ cardProps }: SelectionGridProps) {
   return (
     <>
       <div className="container mx-auto my-6 flex justify-around">
