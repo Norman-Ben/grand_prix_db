@@ -1,6 +1,12 @@
 import React from 'react';
 
-export default function Hero({ title, img, description }) {
+type HeroProps = {
+  title: string;
+  img: string;
+  description: string;
+};
+
+export default function Hero({ title, img, description }: HeroProps) {
   return (
     <div
       className="hero min-h-[65vh] sm:rounded-box overflow-hidden"
