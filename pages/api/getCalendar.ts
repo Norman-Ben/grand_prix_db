@@ -1,6 +1,6 @@
 import mongoose, { Mongoose } from 'mongoose';
 import { NextApiRequest, NextApiResponse } from 'next';
-import calendarModel from '@/schemas/calendarSchema';
+import Calendars from '@/schemas/calendarSchema';
 
 export default async function getCalendar(
   req: NextApiRequest,
@@ -16,19 +16,48 @@ export default async function getCalendar(
     return;
   }
 
-  mongoose.connect(mongoDbUri);
-  const calendar = new calendarModel({
-    name: 'Australian Grand Prix',
-    circuit: 'Albert Park',
-    laps: 58,
-    distance: 307.574,
-    date: new Date('2022-03-20T10:00:00.000Z'),
-  });
-  await calendar.save();
+  // Connect to the database
+  try {
+    await mongoose.connect(mongoDbUri);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+    return;
+  }
 
-  // Close the connection to the database
-  mongoose.connection.close();
+  // Check if the calendar document already exists
+  let existingCalendar;
+  existingCalendar = await Calendars.where({ year: 2022 }).findOne();
 
-  // Return the calendar data
-  res.status(200).json({ calendar });
+  if (existingCalendar) {
+    res.status(200).json({ message: 'Calendar already exists' });
+    return;
+  } else {
+    // Create a new calendar document from API data
+    const raceCalendar = new Calendars({
+      calendarObj: {
+        data: {
+          race: 'Australian Grand Prix',
+          date: '26 March',
+          time: '6:00pm',
+          location: 'Melbourne',
+          country: 'Australia',
+        },
+      },
+      year: 2022,
+    });
+
+    // Save the calendar document to the database
+    try {
+      await raceCalendar.save();
+    } catch (error) {
+      res.status(500).json({ error: error.message });
+      return;
+    }
+
+    // Close the connection to the database
+    mongoose.connection.close();
+
+    // Return the calendar data
+    res.status(200).json({ raceCalendar });
+  }
 }

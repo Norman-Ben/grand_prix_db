@@ -1,10 +1,17 @@
 import mongoose from 'mongoose';
 
 const calendarSchema = new mongoose.Schema({
-  calendarObj: mongoose.Schema.Types.Mixed,
+  calendarObj: {
+    type: mongoose.Schema.Types.Mixed,
+    required: true,
+  },
+  year: {
+    type: Number,
+    required: true,
+  },
 });
 
-const calendarModel =
-  mongoose.models.Calendar || mongoose.model('Calendar', calendarSchema);
+const Calendars =
+  mongoose.models.Calendars || mongoose.model('Calendars', calendarSchema);
 
-export default calendarModel;
+export default Calendars;
