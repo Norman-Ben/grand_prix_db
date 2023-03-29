@@ -1,49 +1,41 @@
-import mongoose, { Mongoose } from 'mongoose';
+import mongoose from 'mongoose';
 import { NextApiRequest, NextApiResponse } from 'next';
 import Calendars from '@/schemas/calendarSchema';
+
+// Establish a connection to the database
+const mongoDbUri = process.env.MONGODB_URI ?? '';
+mongoose.connect(mongoDbUri, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
 
 export default async function getCalendar(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  // Check and get the MongoDB URI and API credentials from the environment variables
-  const mongoDbUri = process.env.MONGODB_URI ?? '';
-
-  if (!mongoDbUri) {
-    res
-      .status(500)
-      .json({ error: 'MongoDB URI is not defined as an environment variable' });
-    return;
-  }
-
-  // Connect to the database
-  try {
-    await mongoose.connect(mongoDbUri);
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-    return;
-  }
-
   // Check if the calendar document already exists
-  let existingCalendar;
-  existingCalendar = await Calendars.where({ year: 2022 }).findOne();
+  // const { year } = req.query;
+  const year = '2022';
+  const existingCalendar = await Calendars.where({ year }).findOne();
 
   if (existingCalendar) {
-    res.status(200).json({ message: 'Calendar already exists' });
+    // Return the existing calendar data
+    res.status(200).json({ calendar: existingCalendar });
     return;
   } else {
+    // Fetch the calendar data from the API (replace with actual API call)
+    const raceCalendarData = {
+      race: 'Australian Grand Prix',
+      date: '26 March',
+      time: '6:00pm',
+      location: 'Melbourne',
+      country: 'Australia',
+    };
+
     // Create a new calendar document from API data
     const raceCalendar = new Calendars({
-      calendarObj: {
-        data: {
-          race: 'Australian Grand Prix',
-          date: '26 March',
-          time: '6:00pm',
-          location: 'Melbourne',
-          country: 'Australia',
-        },
-      },
-      year: 2022,
+      calendarObj: { data: raceCalendarData },
+      year,
     });
 
     // Save the calendar document to the database
@@ -54,10 +46,7 @@ export default async function getCalendar(
       return;
     }
 
-    // Close the connection to the database
-    mongoose.connection.close();
-
     // Return the calendar data
-    res.status(200).json({ raceCalendar });
+    res.status(200).json({ calendar: raceCalendar });
   }
 }
