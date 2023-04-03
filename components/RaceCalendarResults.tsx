@@ -35,14 +35,12 @@ export default function RaceCalendarResults({ calendar }: RaceCalendarProps) {
                 <tr key={key}>
                   <td>
                     <div className="flex items-center space-x-3">
-                      <div className="avatar">
-                        <div className="mask mask-squircle w-12 h-12">
-                          <img
-                            src={calendar.data.response[key].circuit.image}
-                            alt="Avatar Tailwind CSS Component"
-                            className="bg-gray-200"
-                          />
-                        </div>
+                      <div className="avatar w-16">
+                        <img
+                          src={calendar.data.response[key].circuit.image}
+                          alt="Avatar Tailwind CSS Component"
+                          className="bg-gray-200"
+                        />
                       </div>
                       <div>
                         <div className="font-bold">

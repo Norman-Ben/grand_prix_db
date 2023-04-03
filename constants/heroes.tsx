@@ -1,9 +1,8 @@
-export const currentHeroProps = {
+export const homeHeroProps = {
   title: (
     <div>
       Grand Prix<span className="text-info">.DB</span>
       <br />
-      2023 Season
     </div>
   ),
   img: 'https://wallpapercave.com/wp/wp10985103.jpg',

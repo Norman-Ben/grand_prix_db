@@ -36,6 +36,6 @@ export const twentyThreeSelectionCards = {
     title: 'Race Calendar',
     imgUrl: 'https://placeimg.com/400/225/arch',
     btnText: 'View data',
-    link: '/',
+    link: '/2023season/race-calendar',
   },
 };
