@@ -1,9 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import NewsCard from './NewsCard';
 
-export default function NewsGrid() {
-  interface News {}
+interface News {
+  data: {
+    news: {
+      newsObj: {};
+    };
+  };
+}
 
+export default function NewsGrid() {
   const [news, setNews] = useState<News | null>(null);
 
   useEffect(() => {
@@ -13,7 +19,7 @@ export default function NewsGrid() {
         const res = await fetch(`${BASE_URL}/api/getNews`);
         const data = await res.json();
         setNews({
-          news: data,
+          data,
         });
       } catch (error) {
         console.error(error);
@@ -24,22 +30,26 @@ export default function NewsGrid() {
     getNews();
   }, []);
 
-  console.log(news);
-
   return (
     <>
       <div className="container mx-auto my-6 flex justify-around">
         <div className="grid grid-cols-1 md:grid-cols-2 min-[1300px]:grid-cols-3 gap-8 justify-evenly">
           {news ? (
-            news.news.map((newsItem: any) => (
-              <NewsCard
-                key={newsItem.id}
-                title={newsItem.title}
-                img={newsItem.img}
-                description={newsItem.description}
-                link={newsItem.link}
-              />
-            ))
+            news.data.news.newsObj.data.value.map(
+              (newsItem: any, index: number) => (
+                <NewsCard
+                  key={index}
+                  img={
+                    newsItem.image
+                      ? newsItem.image.contentUrl
+                      : 'https://1000marcas.net/wp-content/uploads/2020/01/logo-F1.png'
+                  }
+                  description={newsItem.description}
+                  url={newsItem.url}
+                  title={newsItem.name}
+                />
+              )
+            )
           ) : (
             <p>Loading news...</p>
           )}

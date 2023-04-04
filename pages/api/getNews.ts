@@ -1,6 +1,21 @@
 import mongoose from 'mongoose';
 import { NextApiRequest, NextApiResponse } from 'next';
-import News from '@/schemas/newsSchema';
+// import News from '@/schemas/newsSchema';
+
+const newsSchema = new mongoose.Schema({
+  newsObj: {
+    type: mongoose.Schema.Types.Mixed,
+    required: true,
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now,
+  },
+});
+
+console.log(Date.now());
+
+const News = mongoose.models.News || mongoose.model('News', newsSchema);
 
 const mongoDbUri = process.env.MONGODB_URI ?? '';
 const dbOptions: mongoose.ConnectOptions = {
@@ -32,7 +47,7 @@ export default async function getCalendar(
       };
 
       const response = await fetch(
-        'https://bing-news-search1.p.rapidapi.com/news/search?q=Formula%201&count=7&mkt=en-GB&freshness=Day&originalImg=true&textFormat=Raw&safeSearch=Off',
+        'https://bing-news-search1.p.rapidapi.com/news/search?q=Formula%201&count=6&mkt=en-GB&freshness=Day&originalImg=true&textFormat=Raw&safeSearch=Off',
         fetchOptions
       );
       if (!response.ok) {
@@ -47,7 +62,10 @@ export default async function getCalendar(
     // Create a new calendar document from API data
     const newsArticles = new News({
       newsObj: { data: newsData },
+      createdAt: new Date(),
     });
+
+    console.log(newsArticles.toObject());
 
     // Save the calendar document to the database
     try {
@@ -56,6 +74,9 @@ export default async function getCalendar(
       res.status(500).json({ error: error.message });
       return;
     }
+
+    // Create a TTL index for the createdAt field
+    await News.createIndexes({ createdAt: 1 }, { expireAfterSeconds: 3600 });
 
     // Return the calendar data
     res.status(200).json({ news: newsArticles });

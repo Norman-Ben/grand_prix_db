@@ -1,7 +1,19 @@
 import React from 'react';
 import Link from 'next/link';
 
-export default function NewsCard({ title, img, description, link }) {
+interface NewsCardProps {
+  img: string;
+  description: string;
+  url: string;
+  title: string;
+}
+
+export default function NewsCard({
+  img,
+  description,
+  url,
+  title,
+}: NewsCardProps) {
   return (
     <div className="card w-96 bg-base-100 shadow-xl">
       <figure>
@@ -11,7 +23,7 @@ export default function NewsCard({ title, img, description, link }) {
         <h2 className="card-title">{title}</h2>
         <p>{description}</p>
         <div className="card-actions justify-end">
-          <Link href={link}>
+          <Link href={url}>
             <button className="btn btn-primary">Read More</button>
           </Link>
         </div>

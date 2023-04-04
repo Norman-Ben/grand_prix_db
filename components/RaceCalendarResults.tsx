@@ -13,8 +13,6 @@ export default function RaceCalendarResults({ calendar }: RaceCalendarProps) {
     return `${day}-${month}-${year}`;
   }
 
-  console.log(calendar);
-
   return (
     <div className="container mx-auto my-6 flex justify-around">
       <div className="overflow-x-auto w-full">
@@ -39,7 +37,7 @@ export default function RaceCalendarResults({ calendar }: RaceCalendarProps) {
                         <img
                           src={calendar.data.response[key].circuit.image}
                           alt="Avatar Tailwind CSS Component"
-                          className="bg-gray-200"
+                          className="bg-gray-200 rounded-md"
                         />
                       </div>
                       <div>

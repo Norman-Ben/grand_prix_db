@@ -1,7 +1,7 @@
 import React from 'react';
 
 type HeroProps = {
-  title: string;
+  title: any;
   img: string;
   description: string;
 };
