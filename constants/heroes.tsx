@@ -14,3 +14,9 @@ export const twentyTwoHeroProps = {
   img: 'https://wallpapercave.com/wp/wp10985103.jpg',
   description: '',
 };
+
+export const twentyThreeHeroProps = {
+  title: '2023 Season',
+  img: 'https://wallpapercave.com/wp/wp10985103.jpg',
+  description: '',
+};

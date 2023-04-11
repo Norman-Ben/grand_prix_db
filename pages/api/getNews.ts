@@ -50,8 +50,6 @@ export default async function getCalendar(
       createdAt: new Date(),
     });
 
-    console.log(newsArticles.toObject());
-
     // Save the calendar document to the database
     try {
       await newsArticles.save();

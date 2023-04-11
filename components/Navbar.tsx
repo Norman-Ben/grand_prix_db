@@ -78,10 +78,10 @@ export default function Navbar() {
           <Link href="/">F1 News</Link>
         </li>
         <li>
-          <Link href="/2022season">2022 Season</Link>
+          <Link href="/2023season">2023 Season</Link>
         </li>
         <li>
-          <Link href="/db">Previous Seasons DB</Link>
+          <Link href="/2022season">2022 Season</Link>
         </li>
       </ul>
     </>
