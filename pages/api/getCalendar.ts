@@ -52,6 +52,7 @@ export default async function getCalendar(
     const raceCalendar = new Calendars({
       calendarObj: { data: raceCalendarData },
       year,
+      createdAt: new Date(),
     });
 
     // Save the calendar document to the database

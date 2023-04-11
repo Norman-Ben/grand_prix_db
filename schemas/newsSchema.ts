@@ -8,9 +8,10 @@ const newsSchema = new mongoose.Schema({
   createdAt: {
     type: Date,
     default: Date.now,
-    expires: 120, //24 hours in seconds
   },
 });
+
+newsSchema.index({ createdAt: 1 }, { expireAfterSeconds: 86400 });
 
 const News = mongoose.models.News || mongoose.model('News', newsSchema);
 

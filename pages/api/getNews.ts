@@ -1,21 +1,6 @@
 import mongoose from 'mongoose';
 import { NextApiRequest, NextApiResponse } from 'next';
-// import News from '@/schemas/newsSchema';
-
-const newsSchema = new mongoose.Schema({
-  newsObj: {
-    type: mongoose.Schema.Types.Mixed,
-    required: true,
-  },
-  createdAt: {
-    type: Date,
-    default: Date.now,
-  },
-});
-
-console.log(Date.now());
-
-const News = mongoose.models.News || mongoose.model('News', newsSchema);
+import News from '@/schemas/newsSchema';
 
 const mongoDbUri = process.env.MONGODB_URI ?? '';
 const dbOptions: mongoose.ConnectOptions = {
@@ -74,9 +59,6 @@ export default async function getCalendar(
       res.status(500).json({ error: error.message });
       return;
     }
-
-    // Create a TTL index for the createdAt field
-    await News.createIndexes({ createdAt: 1 }, { expireAfterSeconds: 3600 });
 
     // Return the calendar data
     res.status(200).json({ news: newsArticles });
