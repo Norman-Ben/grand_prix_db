@@ -9,18 +9,18 @@ const dbOptions: mongoose.ConnectOptions = {
 };
 mongoose.connect(mongoDbUri, dbOptions);
 
-export default async function getCalendar(
+export default async function getNews(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
   const existingNews = await News.findOne();
 
   if (existingNews) {
-    // Return the existing calendar data
+    // Return the existing News data
     res.status(200).json({ news: existingNews });
     return;
   } else {
-    // Fetch the calendar data from the API
+    // Fetch the News data from the API
     let newsData;
     try {
       const fetchOptions = {
@@ -44,13 +44,13 @@ export default async function getCalendar(
       return;
     }
 
-    // Create a new calendar document from API data
+    // Create a new News document from API data
     const newsArticles = new News({
       newsObj: { data: newsData },
       createdAt: new Date(),
     });
 
-    // Save the calendar document to the database
+    // Save the News document to the database
     try {
       await newsArticles.save();
     } catch (error: any) {
@@ -58,7 +58,7 @@ export default async function getCalendar(
       return;
     }
 
-    // Return the calendar data
+    // Return the News data
     res.status(200).json({ news: newsArticles });
   }
 }

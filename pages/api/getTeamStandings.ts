@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 import { NextApiRequest, NextApiResponse } from 'next';
-import DriverStandings from '@/schemas/driverStandingsSchema';
+import TeamStandings from '@/schemas/teamStandingsSchema';
 
 // Establish a connection to the database
 const mongoDbUri = process.env.MONGODB_URI ?? '';
@@ -10,24 +10,24 @@ const dbOptions: mongoose.ConnectOptions = {
 };
 mongoose.connect(mongoDbUri, dbOptions);
 
-export default async function getDriverStandings(
+export default async function getTeamStandings(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  // Check if the Driver Standings document already exists
+  // Check if the team standings document already exists
   const year = req.query.year;
 
-  const existingDriverStandings = await DriverStandings.where({
+  const existingTeamStandings = await TeamStandings.where({
     year,
   }).findOne();
 
-  if (existingDriverStandings) {
-    // Return the existing Driver Standings data
-    res.status(200).json(existingDriverStandings);
+  if (existingTeamStandings) {
+    // Return the existing team standings data
+    res.status(200).json(existingTeamStandings);
     return;
   } else {
-    // Fetch the Driver Standings data from the API
-    let driverStandingsData;
+    // Fetch the team standings data from the API
+    let teamStandingsData;
     try {
       const fetchOptions = {
         method: 'GET',
@@ -38,34 +38,34 @@ export default async function getDriverStandings(
       };
 
       const response = await fetch(
-        `https://api-formula-1.p.rapidapi.com/rankings/drivers?season=${year}`,
+        `https://api-formula-1.p.rapidapi.com/rankings/teams?season=${year}`,
         fetchOptions
       );
       if (!response.ok) {
         throw new Error(`API request failed with status ${response.status}`);
       }
-      driverStandingsData = await response.json();
+      teamStandingsData = await response.json();
     } catch (error: any) {
       res.status(500).json({ error: error.message });
       return;
     }
 
-    // Create a new Driver Standings document from API data
-    const driverStandings = new DriverStandings({
-      driverStandingsObj: { data: driverStandingsData },
+    // Create a new team standings document from API data
+    const teamStandings = new TeamStandings({
+      teamStandingsObj: { data: teamStandingsData },
       year,
       createdAt: new Date(),
     });
 
-    // Save the Driver Standings document to the database
+    // Save the team standings document to the database
     try {
-      await driverStandings.save();
+      await teamStandings.save();
     } catch (error: any) {
       res.status(500).json({ error: error.message });
       return;
     }
 
-    // Return the Driver Standings data
-    res.status(200).json({ driverStandings: driverStandings });
+    // Return the team standings data
+    res.status(200).json({ teamStandings: teamStandings });
   }
 }

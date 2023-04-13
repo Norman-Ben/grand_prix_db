@@ -9,7 +9,7 @@ export const twentyTwoSelectionCards = {
     title: 'Constructor Standings',
     imgUrl: 'https://placeimg.com/400/225/arch',
     btnText: 'View data',
-    link: '2022season/constructor-standings',
+    link: '2022season/team-standings',
   },
   RaceCalendar: {
     title: 'Race Calendar',
@@ -30,7 +30,7 @@ export const twentyThreeSelectionCards = {
     title: 'Constructor Standings',
     imgUrl: 'https://placeimg.com/400/225/arch',
     btnText: 'View data',
-    link: '2023season/constructor-standings',
+    link: '2023season/team-standings',
   },
   RaceCalendar: {
     title: 'Race Calendar',

@@ -22,81 +22,88 @@ export default function DriverStandings({ standings }: DriverStandingsProps) {
           </thead>
           <tbody>
             {/* Map though Standings object and add a table row for each */}
-            {Object.keys(
-              standings.standings.driverStandingsObj.data.response
-            ).map((key) => {
-              return (
-                <tr key={key}>
-                  <td>
-                    <div className="flex items-center space-x-3">
-                      <div className="avatar w-16">
-                        <img
-                          src={
-                            standings.standings.driverStandingsObj.data
-                              .response[key].driver.image
-                          }
-                          alt="Avatar Tailwind CSS Component"
-                          className="bg-gray-200 rounded-md"
-                        />
-                      </div>
-                      <div>
-                        <div className="font-bold">
-                          {
-                            standings.standings.driverStandingsObj.data
-                              .response[key].driver.name
-                          }
+            {standings?.standings?.driverStandingsObj?.data ? (
+              Object.keys(
+                standings.standings.driverStandingsObj.data.response
+              ).map((key) => {
+                return (
+                  <tr key={key}>
+                    <td>
+                      <div className="flex items-center space-x-3">
+                        <div className="avatar w-16">
+                          <img
+                            src={
+                              standings.standings.driverStandingsObj.data
+                                .response[key].driver.image
+                            }
+                            alt="Avatar Tailwind CSS Component"
+                            className="bg-gray-200 rounded-md"
+                          />
                         </div>
-                        <div className="text-sm opacity-50">
-                          {
-                            standings.standings.driverStandingsObj.data
-                              .response[key].driver.abbr
-                          }
-                        </div>
-                        <div className="text-sm opacity-50">
-                          {
-                            standings.standings.driverStandingsObj.data
-                              .response[key].driver.number
-                          }
-                        </div>
-                      </div>
-                    </div>
-                  </td>
-                  <td>
-                    {
-                      standings.standings.driverStandingsObj.data.response[key]
-                        .position
-                    }
-                    <br />
-                  </td>
-                  <td>
-                    {standings.standings.driverStandingsObj.data.response[key]
-                      .points || 0}
-                  </td>
-                  <th>
-                    <div className="flex items-center space-x-3">
-                      <div className="avatar w-16">
-                        <img
-                          src={
-                            standings.standings.driverStandingsObj.data
-                              .response[key].team.logo
-                          }
-                          alt="Avatar Tailwind CSS Component"
-                          className="bg-gray-200 rounded-md"
-                        />
-                      </div>
-                      <div>
-                        <div className="font-bold">
-                          {
-                            standings.standings.driverStandingsObj.data
-                              .response[key].team.name
-                          }
+                        <div>
+                          <div className="font-bold">
+                            {
+                              standings.standings.driverStandingsObj.data
+                                .response[key].driver.name
+                            }
+                          </div>
+                          <div className="text-sm opacity-50">
+                            {
+                              standings.standings.driverStandingsObj.data
+                                .response[key].driver.abbr
+                            }
+                          </div>
+                          <div className="text-sm opacity-50">
+                            {
+                              standings.standings.driverStandingsObj.data
+                                .response[key].driver.number
+                            }
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  </th>
-                </tr>
-              );
-            })}
+                    </td>
+                    <td>
+                      {
+                        standings.standings.driverStandingsObj.data.response[
+                          key
+                        ].position
+                      }
+                      <br />
+                    </td>
+                    <td>
+                      {standings.standings.driverStandingsObj.data.response[key]
+                        .points || 0}
+                    </td>
+                    <th>
+                      <div className="flex items-center space-x-3">
+                        <div className="avatar w-16">
+                          <img
+                            src={
+                              standings.standings.driverStandingsObj.data
+                                .response[key].team.logo
+                            }
+                            alt="Avatar Tailwind CSS Component"
+                            className="bg-gray-200 rounded-md"
+                          />
+                        </div>
+                        <div>
+                          <div className="font-bold">
+                            {
+                              standings.standings.driverStandingsObj.data
+                                .response[key].team.name
+                            }
+                          </div>
+                        </div>
+                      </div>
+                    </th>
+                  </tr>
+                );
+              })
+            ) : (
+              <tr>
+                <td colSpan={4}>No Data</td>
+              </tr>
+            )}
           </tbody>
           {/* <!-- foot --> */}
           <tfoot>

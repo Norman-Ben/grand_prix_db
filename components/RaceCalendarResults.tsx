@@ -1,7 +1,7 @@
 import React from 'react';
 
 interface RaceCalendarProps {
-  calendar: {};
+  calendar: any;
 }
 
 export default function RaceCalendarResults({ calendar }: RaceCalendarProps) {
@@ -53,9 +53,9 @@ export default function RaceCalendarResults({ calendar }: RaceCalendarProps) {
                   <td>
                     {calendar.data.response[key].laps.total}
                     <br />
-                    {/* <span className="badge badge-ghost badge-sm">
+                    <span className="badge badge-ghost badge-sm">
                       {calendar.data.response[key].distance}
-                    </span> */}
+                    </span>
                   </td>
                   <td>{formatDate(calendar.data.response[key].date)}</td>
                   <th>

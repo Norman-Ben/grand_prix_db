@@ -39,7 +39,7 @@ export default function DriverStandingsPage() {
         {driverStandingsData ? (
           <DriverStandings standings={driverStandingsData} />
         ) : (
-          <p>Loading calendar...</p>
+          <p>Loading results...</p>
         )}
         <Footer />
       </div>

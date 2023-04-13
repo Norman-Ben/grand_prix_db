@@ -1,43 +1,43 @@
 import React, { useState, useEffect } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import DriverStandings from '@/components/DriverStandings';
+import TeamStandings from '@/components/TeamStandings';
 
-export default function DriverStandingsPage() {
-  interface DriverStandingsData {
+export default function TeamStandingsPage() {
+  interface TeamStandingsData {
     standings: {};
   }
 
-  const [driverStandingsData, setDriverStandingsData] =
-    useState<DriverStandingsData | null>(null);
+  const [teamStandingsData, setTeamStandingsData] =
+    useState<TeamStandingsData | null>(null);
 
   useEffect(() => {
-    async function getDriverStandings() {
+    async function getTeamStandings() {
       const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
-      const year = 2022;
+      const year = 2023;
       try {
         const res = await fetch(
-          `${BASE_URL}/api/getDriverStandings?year=${year}`
+          `${BASE_URL}/api/getTeamStandings?year=${year}`
         );
         const data = await res.json();
-        setDriverStandingsData({
+        setTeamStandingsData({
           standings: data,
         });
       } catch (error) {
         console.error(error);
-        setDriverStandingsData(null);
+        setTeamStandingsData(null);
       }
     }
 
-    getDriverStandings();
+    getTeamStandings();
   }, []);
 
   return (
     <>
       <div className="container mx-auto">
         <Navbar />
-        {driverStandingsData ? (
-          <DriverStandings standings={driverStandingsData} />
+        {teamStandingsData ? (
+          <TeamStandings standings={teamStandingsData} />
         ) : (
           <p>Loading results...</p>
         )}
