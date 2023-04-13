@@ -15,7 +15,7 @@ const calendarSchema = new mongoose.Schema({
   },
 });
 
-calendarSchema.index({ createdAt: 1 }, { expireAfterSeconds: 2419200 });
+calendarSchema.index({ createdAt: 1 }, { expireAfterSeconds: 86400 });
 
 const Calendars =
   mongoose.models.Calendars || mongoose.model('Calendars', calendarSchema);
