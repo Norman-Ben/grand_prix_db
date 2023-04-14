@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import React from 'react';
 
 interface RaceCalendarProps {
@@ -61,15 +62,19 @@ export default function RaceCalendarResults({ calendar }: RaceCalendarProps) {
                   </td>
                   <td>{formatDate(calendar.data.response[key].date)}</td>
                   <th>
-                    <button
-                      className={`btn ${
-                        calendar.data.response[key].date > currentDate
-                          ? 'btn-disabled'
-                          : 'btn-primary'
-                      } btn-xs`}
+                    <Link
+                      href={`race-results?id=${calendar.data.response[key].id}`}
                     >
-                      Results
-                    </button>
+                      <button
+                        className={`btn ${
+                          calendar.data.response[key].date > currentDate
+                            ? 'btn-disabled'
+                            : 'btn-primary'
+                        } btn-xs`}
+                      >
+                        Results
+                      </button>
+                    </Link>
                   </th>
                 </tr>
               );
