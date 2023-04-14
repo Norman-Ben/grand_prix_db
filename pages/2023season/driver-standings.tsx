@@ -39,7 +39,7 @@ export default function DriverStandingsPage() {
         {driverStandingsData ? (
           <DriverStandings standings={driverStandingsData} />
         ) : (
-          <p>Loading results...</p>
+          <button className="btn btn-square loading"></button>
         )}
         <Footer />
       </div>

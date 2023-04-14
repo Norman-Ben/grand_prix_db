@@ -39,7 +39,7 @@ export default function TeamStandingsPage() {
         {teamStandingsData ? (
           <TeamStandings standings={teamStandingsData} />
         ) : (
-          <p>Loading results...</p>
+          <button className="btn btn-square loading"></button>
         )}
         <Footer />
       </div>

@@ -36,7 +36,7 @@ export default function RaceCalendar() {
         {calendarData ? (
           <RaceCalendarResults calendar={calendarData.calendar} />
         ) : (
-          <p>Loading calendar...</p>
+          <button className="btn btn-square loading"></button>
         )}
         <Footer />
       </div>

@@ -8,7 +8,7 @@ interface RaceResultsProps {
 export default function RaceCalendarResults({ raceId }: RaceResultsProps) {
   return (
     <>
-      <div>{raceId}</div>
+      <div className="container mx-auto my-6 flex justify-around"></div>
     </>
   );
 }
