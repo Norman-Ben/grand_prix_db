@@ -13,6 +13,8 @@ export default function RaceCalendarResults({ calendar }: RaceCalendarProps) {
     return `${day}-${month}-${year}`;
   }
 
+  const currentDate = new Date().toISOString();
+
   return (
     <div className="container mx-auto my-6 flex justify-around">
       <div className="overflow-x-auto w-full">
@@ -59,7 +61,15 @@ export default function RaceCalendarResults({ calendar }: RaceCalendarProps) {
                   </td>
                   <td>{formatDate(calendar.data.response[key].date)}</td>
                   <th>
-                    <button className="btn btn-primary btn-xs">Results</button>
+                    <button
+                      className={`btn ${
+                        calendar.data.response[key].date > currentDate
+                          ? 'btn-disabled'
+                          : 'btn-primary'
+                      } btn-xs`}
+                    >
+                      Results
+                    </button>
                   </th>
                 </tr>
               );
