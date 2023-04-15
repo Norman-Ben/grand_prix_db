@@ -13,8 +13,6 @@ export default function RaceResults({ qualifyingData }: RaceResultsProps) {
     setActiveTab(tab);
   };
 
-  console.log(qualifyingData);
-
   return (
     <>
       <div className="container mx-auto my-6 flex justify-around flex-col">
