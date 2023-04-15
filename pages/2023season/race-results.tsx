@@ -14,9 +14,15 @@ export default function RaceResultsPage() {
     results: {};
   }
 
+  interface RaceData {
+    results: {};
+  }
+
   const [qualifyingData, setQualifyingData] = useState<QualifyingData | null>(
     null
   );
+
+  const [raceData, setRaceData] = useState<RaceData | null>(null);
 
   useEffect(() => {
     async function getQualifyingResults() {
@@ -39,11 +45,36 @@ export default function RaceResultsPage() {
     }
   }, [raceId]);
 
+  useEffect(() => {
+    async function getRaceResults() {
+      const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
+      try {
+        const res = await fetch(
+          `${BASE_URL}/api/getRaceResults?raceId=${raceId}`
+        );
+        const data = await res.json();
+        setRaceData({
+          results: data,
+        });
+      } catch (error) {
+        console.error(error);
+        setRaceData(null);
+      }
+    }
+    if (raceId) {
+      getRaceResults();
+    }
+  }, [raceId]);
+
   return (
     <>
       <div className="container mx-auto">
         <Navbar />
-        <RaceResults raceId={raceId} qualifyingData={qualifyingData} />
+        <RaceResults
+          raceId={raceId}
+          qualifyingData={qualifyingData}
+          raceData={raceData}
+        />
         <Footer />
       </div>
     </>
