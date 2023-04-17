@@ -5,6 +5,8 @@ import SelectionGrid from '@/components/SelectionGrid';
 import Hero from '@/components/Hero';
 import { twentyTwoHeroProps } from '@/constants/heroes';
 import { twentyTwoSelectionCards } from '@/constants/selectionCards';
+import BackButton from '@/components/BackButton';
+import Router from 'next/router';
 
 export default function TwentyTwoSeason() {
   return (
@@ -22,7 +24,7 @@ export default function TwentyTwoSeason() {
           img={twentyTwoHeroProps.img}
           description={twentyTwoHeroProps.description}
         />
-
+        <BackButton />
         <SelectionGrid cardProps={twentyTwoSelectionCards} />
         <Footer />
       </div>

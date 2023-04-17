@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import RaceCalendarResults from '@/components/RaceCalendarResults';
+import BackButton from '@/components/BackButton';
 
 export default function RaceCalendar() {
   interface CalendarData {
@@ -33,6 +34,7 @@ export default function RaceCalendar() {
     <>
       <div className="container mx-auto">
         <Navbar />
+        <BackButton />
         {calendarData ? (
           <RaceCalendarResults calendar={calendarData.calendar} />
         ) : (

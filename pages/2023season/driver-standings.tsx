@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import DriverStandings from '@/components/DriverStandings';
+import BackButton from '@/components/BackButton';
 
 export default function DriverStandingsPage() {
   interface DriverStandingsData {
@@ -36,6 +37,7 @@ export default function DriverStandingsPage() {
     <>
       <div className="container mx-auto">
         <Navbar />
+        <BackButton />
         {driverStandingsData ? (
           <DriverStandings standings={driverStandingsData} />
         ) : (

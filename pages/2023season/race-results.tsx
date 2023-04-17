@@ -3,6 +3,7 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { useRouter } from 'next/router';
 import RaceResults from '@/components/RaceResults';
+import BackButton from '@/components/BackButton';
 
 export default function RaceResultsPage() {
   const router = useRouter();
@@ -70,6 +71,7 @@ export default function RaceResultsPage() {
     <>
       <div className="container mx-auto">
         <Navbar />
+        <BackButton />
         <RaceResults
           raceId={raceId}
           qualifyingData={qualifyingData}
