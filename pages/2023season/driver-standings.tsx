@@ -14,9 +14,12 @@ export default function DriverStandingsPage() {
 
   useEffect(() => {
     async function getDriverStandings() {
+      const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
       const year = 2023;
       try {
-        const res = await fetch(`api/getDriverStandings?year=${year}`);
+        const res = await fetch(
+          `${BASE_URL}/api/getDriverStandings?year=${year}`
+        );
         const data = await res.json();
         setDriverStandingsData({
           standings: data,

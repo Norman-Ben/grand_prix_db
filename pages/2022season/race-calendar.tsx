@@ -13,9 +13,10 @@ export default function RaceCalendar() {
 
   useEffect(() => {
     async function getRaceCalendar() {
+      const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
       const year = 2022;
       try {
-        const res = await fetch(`api/getCalendar?year=${year}`);
+        const res = await fetch(`${BASE_URL}/api/getCalendar?year=${year}`);
         const data = await res.json();
         setCalendarData({
           calendar: data.calendar.calendarObj,

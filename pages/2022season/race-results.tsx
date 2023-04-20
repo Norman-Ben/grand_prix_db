@@ -27,8 +27,11 @@ export default function RaceResultsPage() {
 
   useEffect(() => {
     async function getQualifyingResults() {
+      const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
       try {
-        const res = await fetch(`api/getQualifyingResults?raceId=${raceId}`);
+        const res = await fetch(
+          `${BASE_URL}/api/getQualifyingResults?raceId=${raceId}`
+        );
         const data = await res.json();
         setQualifyingData({
           results: data,
@@ -45,8 +48,11 @@ export default function RaceResultsPage() {
 
   useEffect(() => {
     async function getRaceResults() {
+      const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
       try {
-        const res = await fetch(`api/getRaceResults?raceId=${raceId}`);
+        const res = await fetch(
+          `${BASE_URL}/api/getRaceResults?raceId=${raceId}`
+        );
         const data = await res.json();
         setRaceData({
           results: data,
