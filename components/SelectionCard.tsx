@@ -1,7 +1,19 @@
 import React from 'react';
 import Link from 'next/link';
 
-export default function SelectionCard({ title, imgUrl, btnText, link }) {
+interface SelectionCardProps {
+  title: string;
+  imgUrl: string;
+  btnText: string;
+  link: string;
+}
+
+export default function SelectionCard({
+  title,
+  imgUrl,
+  btnText,
+  link,
+}: SelectionCardProps) {
   return (
     <div className="card card-compact w-96 bg-base-100 shadow-xl">
       <figure>
