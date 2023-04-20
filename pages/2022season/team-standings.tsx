@@ -14,12 +14,9 @@ export default function TeamStandingsPage() {
 
   useEffect(() => {
     async function getTeamStandings() {
-      const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
       const year = 2022;
       try {
-        const res = await fetch(
-          `${BASE_URL}/api/getTeamStandings?year=${year}`
-        );
+        const res = await fetch(`api/getTeamStandings?year=${year}`);
         const data = await res.json();
         setTeamStandingsData({
           standings: data,

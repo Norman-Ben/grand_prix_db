@@ -16,9 +16,8 @@ export default function NewsGrid() {
 
   useEffect(() => {
     async function getNews() {
-      const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
       try {
-        const res = await fetch(`${BASE_URL}/api/getNews`);
+        const res = await fetch(`api/getNews`);
         const data = await res.json();
         setNews({
           data,
