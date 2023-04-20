@@ -1,5 +1,4 @@
 import React from 'react';
-import 
 
 interface TeamStandingsProps {
   standings: any;
@@ -64,7 +63,7 @@ export default function TeamStandings({ standings }: TeamStandingsProps) {
               })
             ) : (
               <tr>
-              <button className="btn btn-square loading"></button>
+                <button className="btn btn-square loading"></button>
               </tr>
             )}
           </tbody>
