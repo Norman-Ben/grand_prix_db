@@ -4,7 +4,9 @@ import NewsCard from './NewsCard';
 interface News {
   data: {
     news: {
-      newsObj: {};
+      newsObj: {
+        data: any;
+      };
     };
   };
 }
