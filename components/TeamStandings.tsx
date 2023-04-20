@@ -1,4 +1,5 @@
 import React from 'react';
+import 
 
 interface TeamStandingsProps {
   standings: any;
@@ -18,7 +19,7 @@ export default function TeamStandings({ standings }: TeamStandingsProps) {
             </tr>
           </thead>
           <tbody>
-            {/* Map though Standings object and add a table row for each */}
+            {/* Map through Standings object and add a table row for each */}
             {standings?.standings?.teamStandingsObj?.data ? (
               Object.keys(
                 standings.standings.teamStandingsObj.data.response
@@ -63,7 +64,7 @@ export default function TeamStandings({ standings }: TeamStandingsProps) {
               })
             ) : (
               <tr>
-                <td colSpan={4}>No Data</td>
+              <button className="btn btn-square loading"></button>
               </tr>
             )}
           </tbody>

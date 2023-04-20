@@ -127,7 +127,7 @@ export default function RaceResults({
                   })
                 ) : (
                   <tr>
-                    <td colSpan={4}>No Data</td>
+                    <button className="btn btn-square loading"></button>
                   </tr>
                 )}
               </tbody>
@@ -242,7 +242,7 @@ export default function RaceResults({
                   })
                 ) : (
                   <tr>
-                    <td colSpan={4}>No Data</td>
+                    <button className="btn btn-square loading"></button>
                   </tr>
                 )}
               </tbody>

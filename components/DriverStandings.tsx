@@ -99,7 +99,7 @@ export default function DriverStandings({ standings }: DriverStandingsProps) {
               })
             ) : (
               <tr>
-                <td colSpan={4}>No Data</td>
+                <button className="btn btn-square loading"></button>
               </tr>
             )}
           </tbody>
