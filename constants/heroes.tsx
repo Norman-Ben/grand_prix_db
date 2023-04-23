@@ -1,6 +1,6 @@
-import HeroPic from '../public/assets/hero.jpg';
-import HeroPic22 from '../public/assets/hero22.jpg';
-import HeroPic23 from '../public/assets/hero23.jpg';
+import HeroPic from '../public/assets/Hero.jpg';
+import HeroPic22 from '../public/assets/Hero22.jpg';
+import HeroPic23 from '../public/assets/Hero23.jpg';
 
 export const homeHeroProps = {
   title: (
