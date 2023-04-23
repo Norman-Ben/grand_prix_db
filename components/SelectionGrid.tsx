@@ -1,9 +1,10 @@
 import React from 'react';
 import SelectionCard from './SelectionCard';
+import { StaticImageData } from 'next/image';
 
 interface CardProps {
   title: string;
-  imgUrl: string;
+  imgUrl: StaticImageData;
   btnText: string;
   link: string;
 }

@@ -1,3 +1,7 @@
+import HeroPic from '../public/assets/hero.jpg';
+import HeroPic22 from '../public/assets/hero22.jpg';
+import HeroPic23 from '../public/assets/hero23.jpg';
+
 export const homeHeroProps = {
   title: (
     <div>
@@ -5,18 +9,18 @@ export const homeHeroProps = {
       <br />
     </div>
   ),
-  img: 'https://wallpapercave.com/wp/wp10985103.jpg',
+  img: HeroPic,
   description: 'The Formula 1 database for all F1 news and statistics.',
 };
 
 export const twentyTwoHeroProps = {
   title: '2022 Season',
-  img: 'https://wallpapercave.com/wp/wp10985103.jpg',
+  img: HeroPic22,
   description: '',
 };
 
 export const twentyThreeHeroProps = {
   title: '2023 Season',
-  img: 'https://wallpapercave.com/wp/wp10985103.jpg',
+  img: HeroPic23,
   description: '',
 };
