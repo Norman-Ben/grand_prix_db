@@ -20,7 +20,7 @@ export default function RaceResults({
   return (
     <>
       <div className="container mx-auto my-6 flex justify-around flex-col">
-        <div className="tabs tabs-boxed justify-center mb-2 max-w-[165px] mx-auto">
+        <div className="tabs tabs-boxed justify-center mb-2 max-w-[170px] mx-auto">
           <a
             className={`tab ${activeTab === 'race' ? '' : 'tab-active'}`}
             onClick={() => handleTabClick('qualifying')}
