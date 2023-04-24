@@ -25,6 +25,8 @@ export default function RaceResultsPage() {
 
   const [raceData, setRaceData] = useState<RaceData | null>(null);
 
+  const [refreshKey, setRefreshKey] = useState(Date.now());
+
   useEffect(() => {
     async function getQualifyingResults() {
       const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
@@ -41,6 +43,7 @@ export default function RaceResultsPage() {
         setQualifyingData(null);
       }
     }
+    setRefreshKey(Date.now());
     if (raceId) {
       getQualifyingResults();
     }
@@ -62,6 +65,7 @@ export default function RaceResultsPage() {
         setRaceData(null);
       }
     }
+    setRefreshKey(Date.now());
     if (raceId) {
       getRaceResults();
     }
@@ -69,7 +73,7 @@ export default function RaceResultsPage() {
 
   return (
     <>
-      <div className="container mx-auto">
+      <div className="container mx-auto" key={refreshKey}>
         <Navbar />
         <BackButton />
         <RaceResults

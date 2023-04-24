@@ -10,6 +10,7 @@ export default function RaceCalendar() {
   }
 
   const [calendarData, setCalendarData] = useState<CalendarData | null>(null);
+  const [refreshKey, setRefreshKey] = useState(Date.now());
 
   useEffect(() => {
     async function getRaceCalendar() {
@@ -26,13 +27,14 @@ export default function RaceCalendar() {
         setCalendarData(null);
       }
     }
+    setRefreshKey(Date.now());
 
     getRaceCalendar();
   }, []);
 
   return (
     <>
-      <div className="container mx-auto">
+      <div className="container mx-auto" key={refreshKey}>
         <Navbar />
         <BackButton />
         {calendarData ? (

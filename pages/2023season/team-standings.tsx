@@ -11,6 +11,7 @@ export default function TeamStandingsPage() {
 
   const [teamStandingsData, setTeamStandingsData] =
     useState<TeamStandingsData | null>(null);
+  const [refreshKey, setRefreshKey] = useState(Date.now());
 
   useEffect(() => {
     async function getTeamStandings() {
@@ -29,13 +30,14 @@ export default function TeamStandingsPage() {
         setTeamStandingsData(null);
       }
     }
+    setRefreshKey(Date.now());
 
     getTeamStandings();
   }, []);
 
   return (
     <>
-      <div className="container mx-auto">
+      <div className="container mx-auto" key={refreshKey}>
         <Navbar />
         <BackButton />
         {teamStandingsData ? (

@@ -12,6 +12,8 @@ export default function DriverStandingsPage() {
   const [driverStandingsData, setDriverStandingsData] =
     useState<DriverStandingsData | null>(null);
 
+  const [refreshKey, setRefreshKey] = useState(Date.now());
+
   useEffect(() => {
     async function getDriverStandings() {
       const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
@@ -29,13 +31,13 @@ export default function DriverStandingsPage() {
         setDriverStandingsData(null);
       }
     }
-
+    setRefreshKey(Date.now());
     getDriverStandings();
   }, []);
 
   return (
     <>
-      <div className="container mx-auto">
+      <div className="container mx-auto" key={refreshKey}>
         <Navbar />
         <BackButton />
         {driverStandingsData ? (

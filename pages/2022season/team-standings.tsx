@@ -12,6 +12,8 @@ export default function TeamStandingsPage() {
   const [teamStandingsData, setTeamStandingsData] =
     useState<TeamStandingsData | null>(null);
 
+  const [refreshKey, setRefreshKey] = useState(Date.now());
+
   useEffect(() => {
     async function getTeamStandings() {
       const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
@@ -30,12 +32,14 @@ export default function TeamStandingsPage() {
       }
     }
 
+    setRefreshKey(Date.now());
+
     getTeamStandings();
   }, []);
 
   return (
     <>
-      <div className="container mx-auto">
+      <div className="container mx-auto" key={refreshKey}>
         <Navbar />
         <BackButton />
         {teamStandingsData ? (
