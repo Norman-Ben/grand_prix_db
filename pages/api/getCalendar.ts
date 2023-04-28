@@ -64,6 +64,6 @@ export default async function getCalendar(
     }
 
     // Return the calendar data
-    res.status(200).json({ calendar: raceCalendar });
+    res.status(200).json(raceCalendar);
   }
 }

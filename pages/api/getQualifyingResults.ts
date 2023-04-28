@@ -66,6 +66,6 @@ export default async function getQualifyingResults(
     }
 
     // Return the qualifying standings data
-    res.status(200).json({ qualifyingResults: qualifyingResults });
+    res.status(200).json(qualifyingResults);
   }
 }

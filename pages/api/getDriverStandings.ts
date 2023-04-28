@@ -65,7 +65,7 @@ export default async function getDriverStandings(
       return;
     }
 
-    // Return the Driver Standings data
-    res.status(200).json({ driverStandings: driverStandings });
+    // Await Return the Driver Standings data
+    res.status(200).json(driverStandings);
   }
 }

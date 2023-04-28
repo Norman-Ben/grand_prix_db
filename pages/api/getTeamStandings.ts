@@ -66,6 +66,6 @@ export default async function getTeamStandings(
     }
 
     // Return the team standings data
-    res.status(200).json({ teamStandings: teamStandings });
+    res.status(200).json(teamStandings);
   }
 }
