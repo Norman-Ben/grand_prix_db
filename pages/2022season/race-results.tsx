@@ -4,11 +4,12 @@ import Footer from '@/components/Footer';
 import { useRouter } from 'next/router';
 import RaceResults from '@/components/RaceResults';
 import BackButton from '@/components/BackButton';
+import useSwr from 'swr';
 
 export default function RaceResultsPage() {
   const router = useRouter();
   const { id } = router.query;
-  console.log(id);
+
   const raceId = Number(id);
 
   interface QualifyingData {
@@ -19,61 +20,21 @@ export default function RaceResultsPage() {
     results: {};
   }
 
-  const [qualifyingData, setQualifyingData] = useState<QualifyingData | null>(
-    null
+  const fetcher = (url: string) => fetch(url).then((res) => res.json());
+
+  const { data: qualifyingData, error: qualifyingError } = useSwr(
+    raceId ? `/api/getQualifyingResults?raceId=${raceId}` : null,
+    fetcher
   );
 
-  const [raceData, setRaceData] = useState<RaceData | null>(null);
-
-  const [refreshKey, setRefreshKey] = useState(Date.now());
-
-  useEffect(() => {
-    async function getQualifyingResults() {
-      const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
-      try {
-        const res = await fetch(
-          `${BASE_URL}/api/getQualifyingResults?raceId=${raceId}`
-        );
-        const data = await res.json();
-        setQualifyingData({
-          results: data,
-        });
-      } catch (error) {
-        console.error(error);
-        setQualifyingData(null);
-      }
-    }
-    setRefreshKey(Date.now());
-    if (raceId) {
-      getQualifyingResults();
-    }
-  }, [raceId]);
-
-  useEffect(() => {
-    async function getRaceResults() {
-      const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
-      try {
-        const res = await fetch(
-          `${BASE_URL}/api/getRaceResults?raceId=${raceId}`
-        );
-        const data = await res.json();
-        setRaceData({
-          results: data,
-        });
-      } catch (error) {
-        console.error(error);
-        setRaceData(null);
-      }
-    }
-    setRefreshKey(Date.now());
-    if (raceId) {
-      getRaceResults();
-    }
-  }, [raceId]);
+  const { data: raceData, error: raceError } = useSwr(
+    raceId ? `/api/getRaceResults?raceId=${raceId}` : null,
+    fetcher
+  );
 
   return (
     <>
-      <div className="container mx-auto" key={refreshKey}>
+      <div className="container mx-auto">
         <Navbar />
         <BackButton />
         <RaceResults

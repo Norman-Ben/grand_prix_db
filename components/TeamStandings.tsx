@@ -17,48 +17,45 @@ export default function TeamStandings({ standings }: TeamStandingsProps) {
           </thead>
           <tbody>
             {/* Map through Standings object and add a table row for each */}
-            {standings?.standings?.teamStandingsObj?.data ? (
-              Object.keys(
-                standings.standings.teamStandingsObj.data.response
-              ).map((key) => {
-                return (
-                  <tr key={key}>
-                    <td>
-                      <div className="flex items-center space-x-3">
-                        <div className="avatar w-16">
-                          <img
-                            src={
-                              standings.standings.teamStandingsObj.data
-                                .response[key].team.logo
-                            }
-                            alt="Avatar Tailwind CSS Component"
-                            className="bg-gray-200 rounded-md"
-                          />
-                        </div>
-                        <div>
-                          <div className="font-bold">
-                            {
-                              standings.standings.teamStandingsObj.data
-                                .response[key].team.name
-                            }
+            {standings?.teamStandingsObj?.data ? (
+              Object.keys(standings.teamStandingsObj.data.response).map(
+                (key) => {
+                  return (
+                    <tr key={key}>
+                      <td>
+                        <div className="flex items-center space-x-3">
+                          <div className="avatar w-16">
+                            <img
+                              src={
+                                standings.teamStandingsObj.data.response[key]
+                                  .team.logo
+                              }
+                              alt="Avatar Tailwind CSS Component"
+                              className="bg-gray-200 rounded-md"
+                            />
+                          </div>
+                          <div>
+                            <div className="font-bold">
+                              {
+                                standings.teamStandingsObj.data.response[key]
+                                  .team.name
+                              }
+                            </div>
                           </div>
                         </div>
-                      </div>
-                    </td>
-                    <td>
-                      {
-                        standings.standings.teamStandingsObj.data.response[key]
-                          .position
-                      }
-                      <br />
-                    </td>
-                    <td>
-                      {standings.standings.teamStandingsObj.data.response[key]
-                        .points || 0}
-                    </td>
-                  </tr>
-                );
-              })
+                      </td>
+                      <td>
+                        {standings.teamStandingsObj.data.response[key].position}
+                        <br />
+                      </td>
+                      <td>
+                        {standings.teamStandingsObj.data.response[key].points ||
+                          0}
+                      </td>
+                    </tr>
+                  );
+                }
+              )
             ) : (
               <tr>
                 <button className="btn btn-square loading"></button>

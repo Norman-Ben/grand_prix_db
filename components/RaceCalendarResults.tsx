@@ -1,9 +1,6 @@
 import Link from 'next/link';
-import React from 'react';
 
-interface RaceCalendarProps {
-  calendar: any;
-}
+type RaceCalendarProps = Record<string, any>;
 
 export default function RaceCalendarResults({ calendar }: RaceCalendarProps) {
   function formatDate(date: string) {
@@ -30,55 +27,55 @@ export default function RaceCalendarResults({ calendar }: RaceCalendarProps) {
             </tr>
           </thead>
           <tbody>
-            {/* Map though calendar object and add a table row for each */}
-            {Object.keys(calendar.data.response).map((key) => {
-              return (
-                <tr key={key}>
-                  <td>
-                    <div className="flex items-center space-x-3">
-                      <div className="avatar w-16">
-                        <img
-                          src={calendar.data.response[key].circuit.image}
-                          alt="Avatar Tailwind CSS Component"
-                          className="bg-gray-200 rounded-md"
-                        />
-                      </div>
-                      <div>
-                        <div className="font-bold">
-                          {calendar.data.response[key].competition.name}
+            {/* Map through calendar object and add a table row for each */}
+            {calendar?.calendar?.calendarObj?.data.response.map(
+              (race: Record<string, any>, index: number) => {
+                return (
+                  <tr key={index}>
+                    <td>
+                      <div className="flex items-center space-x-3">
+                        <div className="avatar w-16">
+                          <img
+                            src={race.circuit.image}
+                            alt="Avatar Tailwind CSS Component"
+                            className="bg-gray-200 rounded-md"
+                          />
                         </div>
-                        <div className="text-sm opacity-50">
-                          {calendar.data.response[key].circuit.name}
+                        <div>
+                          <div className="font-bold">
+                            {race.competition.name}
+                          </div>
+                          <div className="text-sm opacity-50">
+                            {race.circuit.name}
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  </td>
-                  <td>
-                    {calendar.data.response[key].laps.total}
-                    <br />
-                    <span className="badge badge-ghost badge-sm">
-                      {calendar.data.response[key].distance}
-                    </span>
-                  </td>
-                  <td>{formatDate(calendar.data.response[key].date)}</td>
-                  <th>
-                    <Link
-                      href={`race-results?id=${calendar.data.response[key].id}`}
-                    >
-                      <button
-                        className={`btn ${
-                          calendar.data.response[key].date > currentDate
-                            ? 'btn-disabled'
-                            : 'btn-primary'
-                        } btn-xs`}
-                      >
-                        Results
-                      </button>
-                    </Link>
-                  </th>
-                </tr>
-              );
-            })}
+                    </td>
+                    <td>
+                      {race.laps.total}
+                      <br />
+                      <span className="badge badge-ghost badge-sm">
+                        {race.distance}
+                      </span>
+                    </td>
+                    <td>{formatDate(race.date)}</td>
+                    <th>
+                      <Link href={`race-results?id=${race.id}`}>
+                        <button
+                          className={`btn ${
+                            race.date > currentDate
+                              ? 'btn-disabled'
+                              : 'btn-primary'
+                          } btn-xs`}
+                        >
+                          Results
+                        </button>
+                      </Link>
+                    </th>
+                  </tr>
+                );
+              }
+            )}
           </tbody>
           {/* <!-- foot --> */}
           <tfoot>

@@ -13,32 +13,6 @@ export default function DriverStandingsPage() {
     fetcher
   );
 
-  // const [driverStandingsData, setDriverStandingsData] =
-  //   useState<DriverStandingsData | null>(null);
-
-  // const [refreshKey, setRefreshKey] = useState(Date.now());
-
-  // useEffect(() => {
-  //   async function getDriverStandings() {
-  //     const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
-  //     const year = 2023;
-  //     try {
-  //       const res = await fetch(
-  //         `${BASE_URL}/api/getDriverStandings?year=${year}`
-  //       );
-  //       const data = await res.json();
-  //       setDriverStandingsData({
-  //         standings: data,
-  //       });
-  //     } catch (error) {
-  //       console.error(error);
-  //       setDriverStandingsData(null);
-  //     }
-  //   }
-  //   setRefreshKey(Date.now());
-  //   getDriverStandings();
-  // }, []);
-
   return (
     <>
       <div className="container mx-auto">

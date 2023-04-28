@@ -6,8 +6,6 @@ import BackButton from '@/components/BackButton';
 import useSwr from 'swr';
 
 export default function DriverStandingsPage() {
-  type DriverStandingsData = Record<string, any>;
-
   const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
   const { data: driverStandingsData, error } = useSwr(

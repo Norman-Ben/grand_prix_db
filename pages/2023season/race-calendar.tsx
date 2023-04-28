@@ -3,41 +3,23 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import RaceCalendarResults from '@/components/RaceCalendarResults';
 import BackButton from '@/components/BackButton';
+import useSwr from 'swr';
 
 export default function RaceCalendar() {
-  interface CalendarData {
-    calendar: {};
-  }
+  const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
-  const [calendarData, setCalendarData] = useState<CalendarData | null>(null);
-  const [refreshKey, setRefreshKey] = useState(Date.now());
-
-  useEffect(() => {
-    async function getRaceCalendar() {
-      const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
-      const year = 2023;
-      try {
-        const res = await fetch(`${BASE_URL}/api/getCalendar?year=${year}`);
-        const data = await res.json();
-        setCalendarData({
-          calendar: data.calendar.calendarObj,
-        });
-      } catch (error) {
-        console.error(error);
-        setCalendarData(null);
-      }
-    }
-    setRefreshKey(Date.now());
-    getRaceCalendar();
-  }, []);
-
+  const { data: calendarData, error } = useSwr(
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/getCalendar?year=2023`,
+    fetcher
+  );
+  console.log(calendarData);
   return (
     <>
-      <div className="container mx-auto" key={refreshKey}>
+      <div className="container mx-auto">
         <Navbar />
         <BackButton />
         {calendarData ? (
-          <RaceCalendarResults calendar={calendarData.calendar} />
+          <RaceCalendarResults calendar={calendarData} />
         ) : (
           <button className="btn btn-square loading"></button>
         )}
