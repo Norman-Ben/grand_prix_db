@@ -60,17 +60,17 @@ export default function RaceCalendarResults({ calendar }: RaceCalendarProps) {
                     </td>
                     <td>{formatDate(race.date)}</td>
                     <th>
-                      <Link href={`race-results?id=${race.id}`}>
-                        <button
-                          className={`btn ${
-                            race.date > currentDate
-                              ? 'btn-disabled'
-                              : 'btn-primary'
-                          } btn-xs`}
-                        >
+                      {race.date > currentDate ? (
+                        <button className="btn btn-disabled btn-xs" disabled>
                           Results
                         </button>
-                      </Link>
+                      ) : (
+                        <Link href={`race-results?id=${race.id}`}>
+                          <button className="btn btn-primary btn-xs">
+                            Results
+                          </button>
+                        </Link>
+                      )}
                     </th>
                   </tr>
                 );
