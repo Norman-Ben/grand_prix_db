@@ -13,8 +13,6 @@ export default function TeamStandingsPage() {
     fetcher
   );
 
-  console.log(teamStandingsData);
-
   return (
     <>
       <div className="container mx-auto">

@@ -2,7 +2,6 @@ import React from 'react';
 import { DriverStandingsProps } from '@/types/DriverStandingsTypes';
 
 export default function DriverStandings({ standings }: DriverStandingsProps) {
-  console.log(standings);
   return (
     <div className="container mx-auto my-6 flex justify-around">
       <div className="overflow-x-auto w-full">

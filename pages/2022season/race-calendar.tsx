@@ -4,6 +4,7 @@ import Footer from '@/components/Footer';
 import RaceCalendarResults from '@/components/RaceCalendarResults';
 import BackButton from '@/components/BackButton';
 import useSwr from 'swr';
+
 export default function RaceCalendar() {
   const fetcher = (url: string) => fetch(url).then((res) => res.json());
   const { data: calendarData, error } = useSwr(

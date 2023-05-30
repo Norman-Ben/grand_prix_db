@@ -8,6 +8,7 @@ export type RaceCalendarProps = {
         distance: string;
         date: string;
         id: string;
+        status?: string;
       }>;
     };
   };

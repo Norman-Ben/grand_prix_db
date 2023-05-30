@@ -12,14 +12,6 @@ export default function RaceResultsPage() {
 
   const raceId = Number(id);
 
-  interface QualifyingData {
-    results: {};
-  }
-
-  interface RaceData {
-    results: {};
-  }
-
   const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
   const { data: qualifyingData, error: qualifyingError } = useSwr(

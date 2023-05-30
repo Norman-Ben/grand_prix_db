@@ -55,11 +55,21 @@ export default function RaceCalendarResults({ calendar }: RaceCalendarProps) {
                   </td>
                   <td>{formatDate(race.date)}</td>
                   <th>
-                    <Link href={`race-results?id=${race.id}`}>
-                      <button className={`btn ${btnClass} btn-xs`}>
+                    {race.status === 'Cancelled' ? (
+                      <button className="btn btn-disabled btn-xs" disabled>
+                        Event Cancelled
+                      </button>
+                    ) : raceDate > currentDate ? (
+                      <button className="btn btn-disabled btn-xs" disabled>
                         Results
                       </button>
-                    </Link>
+                    ) : (
+                      <Link href={`race-results?id=${race.id}`}>
+                        <button className="btn btn-primary btn-xs">
+                          Results
+                        </button>
+                      </Link>
+                    )}
                   </th>
                 </tr>
               );

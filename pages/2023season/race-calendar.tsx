@@ -12,7 +12,7 @@ export default function RaceCalendar() {
     `${process.env.NEXT_PUBLIC_BASE_URL}/api/getCalendar?year=2023`,
     fetcher
   );
-  console.log(calendarData);
+
   return (
     <>
       <div className="container mx-auto">
