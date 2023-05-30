@@ -1,43 +1,46 @@
 import { useState, useEffect } from 'react';
 import { themeChange } from 'theme-change';
 import Link from 'next/link';
-
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [theme, setTheme] = useState('dark');
-
   function toggleMenu() {
     setIsOpen(!isOpen);
   }
-
   useEffect(() => {
-    const handleClickOutside = (event: any) => {
-      if (event.target.closest('.menu') || event.target.closest('.btn')) {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        event.target &&
+        ((event.target as Element).closest('.menu') ||
+          (event.target as Element).closest('.btn'))
+      ) {
         return;
       }
       setIsOpen(false);
     };
-
     document.addEventListener('click', handleClickOutside);
     return () => {
       document.removeEventListener('click', handleClickOutside);
     };
   }, []);
-
   useEffect(() => {
     themeChange(false);
   });
-
   return (
     <>
-      <div className="navbar bg-base-100">
+      <header className="navbar bg-base-100">
         <div className="flex-none">
-          <button className="btn btn-square btn-ghost" onClick={toggleMenu}>
+          <button
+            className="btn btn-square btn-ghost"
+            onClick={toggleMenu}
+            aria-label="Toggle Menu"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
               className="inline-block w-5 h-5 stroke-current"
+              aria-hidden="true"
             >
               <path
                 strokeLinecap="round"
@@ -67,23 +70,24 @@ export default function Navbar() {
             </select>
           </label>
         </div>
-      </div>
-
-      <ul
-        className={`menu bg-base-300 w-56 rounded-box z-50 transform transition-all duration-700 ease-in-out absolute ${
-          isOpen ? 'translate-y-0' : '-translate-y-[100vh]'
-        }`}
-      >
-        <li>
-          <Link href="/">F1 News</Link>
-        </li>
-        <li>
-          <Link href="/2023season">2023 Season</Link>
-        </li>
-        <li>
-          <Link href="/2022season">2022 Season</Link>
-        </li>
-      </ul>
+      </header>
+      <nav>
+        <ul
+          className={`menu bg-base-300 w-56 rounded-box z-50 transform transition-all duration-700 ease-in-out absolute ${
+            isOpen ? 'translate-y-0' : '-translate-y-[100vh]'
+          }`}
+        >
+          <li>
+            <Link href="/">F1 News</Link>
+          </li>
+          <li>
+            <Link href="/2023season">2023 Season</Link>
+          </li>
+          <li>
+            <Link href="/2022season">2022 Season</Link>
+          </li>
+        </ul>
+      </nav>
     </>
   );
 }

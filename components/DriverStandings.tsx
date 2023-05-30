@@ -1,8 +1,8 @@
 import React from 'react';
-
-type DriverStandingsProps = Record<string, any>;
+import { DriverStandingsProps } from '@/types/DriverStandingsTypes';
 
 export default function DriverStandings({ standings }: DriverStandingsProps) {
+  console.log(standings);
   return (
     <div className="container mx-auto my-6 flex justify-around">
       <div className="overflow-x-auto w-full">
@@ -18,78 +18,50 @@ export default function DriverStandings({ standings }: DriverStandingsProps) {
           </thead>
           <tbody>
             {/* Map though Standings object and add a table row for each */}
-            {standings?.driverStandingsObj?.data ? (
-              Object.keys(standings.driverStandingsObj.data.response).map(
-                (key) => {
+            {standings?.driverStandingsObj?.response ? (
+              Object.keys(standings?.driverStandingsObj.response).map(
+                (key: string) => {
+                  const entry = standings.driverStandingsObj?.response?.[key];
                   return (
                     <tr key={key}>
                       <td>
                         <div className="flex items-center space-x-3">
                           <div className="avatar w-16">
                             <img
-                              src={
-                                standings.driverStandingsObj.data.response[key]
-                                  .driver.image
-                              }
-                              alt="Avatar Tailwind CSS Component"
+                              src={entry?.driver.image}
+                              alt={`Driver: ${entry?.driver.name} Avatar`}
                               className="bg-gray-200 rounded-md"
                             />
                           </div>
                           <div>
                             <div className="font-bold">
-                              {
-                                standings.driverStandingsObj.data.response[key]
-                                  .driver.name
-                              }
+                              {entry?.driver.name}
                             </div>
                             <div className="text-sm opacity-50">
-                              {
-                                standings.driverStandingsObj.data.response[key]
-                                  .driver.abbr
-                              }
+                              {entry?.driver.abbr}
                             </div>
                             <div className="text-sm opacity-50">
-                              {
-                                standings.driverStandingsObj.data.response[key]
-                                  .driver.number
-                              }
+                              {entry?.driver.number}
                             </div>
                           </div>
                         </div>
                       </td>
+                      <td>{entry?.position}</td>
+                      <td>{entry?.points || 0}</td>
                       <td>
-                        {
-                          standings.driverStandingsObj.data.response[key]
-                            .position
-                        }
-                        <br />
-                      </td>
-                      <td>
-                        {standings.driverStandingsObj.data.response[key]
-                          .points || 0}
-                      </td>
-                      <th>
                         <div className="flex items-center space-x-3">
                           <div className="avatar w-16">
                             <img
-                              src={
-                                standings.driverStandingsObj.data.response[key]
-                                  .team.logo
-                              }
-                              alt="Avatar Tailwind CSS Component"
+                              src={entry?.team.logo}
+                              alt={`Team ${entry?.team.name} Logo`}
                               className="bg-gray-200 rounded-md"
                             />
                           </div>
                           <div>
-                            <div className="font-bold">
-                              {
-                                standings.driverStandingsObj.data.response[key]
-                                  .team.name
-                              }
-                            </div>
+                            <div className="font-bold">{entry?.team.name}</div>
                           </div>
                         </div>
-                      </th>
+                      </td>
                     </tr>
                   );
                 }

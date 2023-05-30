@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import React, { useState } from 'react';
 
 interface RaceResultsProps {
@@ -12,7 +11,6 @@ export default function RaceResults({
   raceData,
 }: RaceResultsProps) {
   const [activeTab, setActiveTab] = useState('qualifying');
-
   const handleTabClick = (tab: string) => {
     setActiveTab(tab);
   };
@@ -48,84 +46,82 @@ export default function RaceResults({
               </thead>
               <tbody>
                 {/* Map though Standings object and add a table row for each */}
-                {qualifyingData?.qualifyingResultsObj?.data.response ? (
-                  Object.keys(
-                    qualifyingData.qualifyingResultsObj.data.response
-                  ).map((key) => {
-                    return (
-                      <tr key={key}>
-                        <td>
-                          <div className="flex items-center space-x-3">
-                            <div className="avatar w-16">
-                              <img
-                                src={
-                                  qualifyingData.qualifyingResultsObj.data
-                                    .response[key].driver.image
-                                }
-                                alt="Avatar Tailwind CSS Component"
-                                className="bg-gray-200 rounded-md"
-                              />
-                            </div>
-                            <div>
-                              <div className="font-bold">
-                                {
-                                  qualifyingData.qualifyingResultsObj.data
-                                    .response[key].driver.name
-                                }
+                {qualifyingData?.qualifyingResultsObj?.response ? (
+                  Object.keys(qualifyingData.qualifyingResultsObj.response).map(
+                    (key) => {
+                      return (
+                        <tr key={key}>
+                          <td>
+                            <div className="flex items-center space-x-3">
+                              <div className="avatar w-16">
+                                <img
+                                  src={
+                                    qualifyingData.qualifyingResultsObj
+                                      .response[key].driver.image
+                                  }
+                                  alt={`Avatar of ${qualifyingData.qualifyingResultsObj.response[key].driver.name}`}
+                                  className="bg-gray-200 rounded-md"
+                                />
                               </div>
-                              <div className="text-sm opacity-50">
-                                {
-                                  qualifyingData.qualifyingResultsObj.data
-                                    .response[key].driver.abbr
-                                }
-                              </div>
-                              <div className="text-sm opacity-50">
-                                {
-                                  qualifyingData.qualifyingResultsObj.data
-                                    .response[key].driver.number
-                                }
-                              </div>
-                            </div>
-                          </div>
-                        </td>
-                        <td>
-                          {
-                            qualifyingData.qualifyingResultsObj.data.response[
-                              key
-                            ].position
-                          }
-                          <br />
-                        </td>
-                        <td>
-                          {qualifyingData.qualifyingResultsObj.data.response[
-                            key
-                          ].time || 'No Time Set In Session'}
-                        </td>
-                        <th>
-                          <div className="flex items-center space-x-3">
-                            <div className="avatar w-16">
-                              <img
-                                src={
-                                  qualifyingData.qualifyingResultsObj.data
-                                    .response[key].team.logo
-                                }
-                                alt="Avatar Tailwind CSS Component"
-                                className="bg-gray-200 rounded-md"
-                              />
-                            </div>
-                            <div>
-                              <div className="font-bold">
-                                {
-                                  qualifyingData.qualifyingResultsObj.data
-                                    .response[key].team.name
-                                }
+                              <div>
+                                <div className="font-bold">
+                                  {
+                                    qualifyingData.qualifyingResultsObj
+                                      .response[key].driver.name
+                                  }
+                                </div>
+                                <div className="text-sm opacity-50">
+                                  {
+                                    qualifyingData.qualifyingResultsObj
+                                      .response[key].driver.abbr
+                                  }
+                                </div>
+                                <div className="text-sm opacity-50">
+                                  {
+                                    qualifyingData.qualifyingResultsObj
+                                      .response[key].driver.number
+                                  }
+                                </div>
                               </div>
                             </div>
-                          </div>
-                        </th>
-                      </tr>
-                    );
-                  })
+                          </td>
+                          <td>
+                            {
+                              qualifyingData.qualifyingResultsObj.response[key]
+                                .position
+                            }
+                            <br />
+                          </td>
+                          <td>
+                            {qualifyingData.qualifyingResultsObj.response[key]
+                              .time || 'No Time Set In Session'}
+                          </td>
+                          <td>
+                            <div className="flex items-center space-x-3">
+                              <div className="avatar w-16">
+                                <img
+                                  src={
+                                    qualifyingData.qualifyingResultsObj
+                                      .response[key].team.logo
+                                  }
+                                  alt={`Logo of ${qualifyingData.qualifyingResultsObj.response[key].team.name}`}
+                                  className="bg-gray-200 rounded-md"
+                                />
+                              </div>
+                              <div>
+                                <div className="font-bold">
+                                  {
+                                    qualifyingData.qualifyingResultsObj
+                                      .response[key].team.name
+                                  }
+                                </div>
+                              </div>
+                            </div>
+                          </td>
+                        </tr>
+                      );
+                    }
+                  )
                 ) : (
                   <tr>
                     <button className="btn btn-square loading"></button>
@@ -157,81 +153,74 @@ export default function RaceResults({
               </thead>
               <tbody>
                 {/* Map though Standings object and add a table row for each */}
-                {raceData?.raceResultsObj?.data.response ? (
-                  Object.keys(raceData.raceResultsObj.data.response).map(
-                    (key) => {
-                      return (
-                        <tr key={key}>
-                          <td>
-                            <div className="flex items-center space-x-3">
-                              <div className="avatar w-16">
-                                <img
-                                  src={
-                                    raceData.raceResultsObj.data.response[key]
-                                      .driver.image
-                                  }
-                                  alt="Avatar Tailwind CSS Component"
-                                  className="bg-gray-200 rounded-md"
-                                />
+                {raceData?.raceResultsObj?.response ? (
+                  Object.keys(raceData.raceResultsObj.response).map((key) => {
+                    return (
+                      <tr key={key}>
+                        <td>
+                          <div className="flex items-center space-x-3">
+                            <div className="avatar w-16">
+                              <img
+                                src={
+                                  raceData.raceResultsObj.response[key].driver
+                                    .image
+                                }
+                                alt={`Avatar of ${raceData.raceResultsObj.response[key].driver.name}`}
+                                className="bg-gray-200 rounded-md"
+                              />
+                            </div>
+                            <div>
+                              <div className="font-bold">
+                                {
+                                  raceData.raceResultsObj.response[key].driver
+                                    .name
+                                }
                               </div>
-                              <div>
-                                <div className="font-bold">
-                                  {
-                                    raceData.raceResultsObj.data.response[key]
-                                      .driver.name
-                                  }
-                                </div>
-                                <div className="text-sm opacity-50">
-                                  {
-                                    raceData.raceResultsObj.data.response[key]
-                                      .driver.abbr
-                                  }
-                                </div>
-                                <div className="text-sm opacity-50">
-                                  {
-                                    raceData.raceResultsObj.data.response[key]
-                                      .driver.number
-                                  }
-                                </div>
+                              <div className="text-sm opacity-50">
+                                {
+                                  raceData.raceResultsObj.response[key].driver
+                                    .abbr
+                                }
+                              </div>
+                              <div className="text-sm opacity-50">
+                                {
+                                  raceData.raceResultsObj.response[key].driver
+                                    .number
+                                }
                               </div>
                             </div>
-                          </td>
-                          <td>
-                            {
-                              raceData.raceResultsObj.data.response[key]
-                                .position
-                            }
-                            <br />
-                          </td>
-                          <td>
-                            {raceData.raceResultsObj.data.response[key].time}
-                          </td>
-                          <th>
-                            <div className="flex items-center space-x-3">
-                              <div className="avatar w-16">
-                                <img
-                                  src={
-                                    raceData.raceResultsObj.data.response[key]
-                                      .team.logo
-                                  }
-                                  alt="Avatar Tailwind CSS Component"
-                                  className="bg-gray-200 rounded-md"
-                                />
-                              </div>
-                              <div>
-                                <div className="font-bold">
-                                  {
-                                    raceData.raceResultsObj.data.response[key]
-                                      .team.name
-                                  }
-                                </div>
+                          </div>
+                        </td>
+                        <td>
+                          {raceData.raceResultsObj.response[key].position}
+                          <br />
+                        </td>
+                        <td>{raceData.raceResultsObj.response[key].time}</td>
+                        <td>
+                          <div className="flex items-center space-x-3">
+                            <div className="avatar w-16">
+                              <img
+                                src={
+                                  raceData.raceResultsObj.response[key].team
+                                    .logo
+                                }
+                                alt={`Logo of ${raceData.raceResultsObj.response[key].team.name}`}
+                                className="bg-gray-200 rounded-md"
+                              />
+                            </div>
+                            <div>
+                              <div className="font-bold">
+                                {
+                                  raceData.raceResultsObj.response[key].team
+                                    .name
+                                }
                               </div>
                             </div>
-                          </th>
-                        </tr>
-                      );
-                    }
-                  )
+                          </div>
+                        </td>
+                      </tr>
+                    );
+                  })
                 ) : (
                   <tr>
                     <button className="btn btn-square loading"></button>

@@ -1,21 +1,6 @@
 import React from 'react';
 import SelectionCard from './SelectionCard';
-import { StaticImageData } from 'next/image';
-
-interface CardProps {
-  title: string;
-  imgUrl: StaticImageData;
-  btnText: string;
-  link: string;
-}
-
-interface SelectionGridProps {
-  cardProps: {
-    DriverStandings: CardProps;
-    ConstructorStandings: CardProps;
-    RaceCalendar: CardProps;
-  };
-}
+import { SelectionGridProps } from '@/types/SelectionGridTypes';
 
 export default function SelectionGrid({ cardProps }: SelectionGridProps) {
   return (

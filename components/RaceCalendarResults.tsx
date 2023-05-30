@@ -1,18 +1,13 @@
 import Link from 'next/link';
+import { RaceCalendarProps } from '@/types/RaceCalendarTypes';
 
-type RaceCalendarProps = Record<string, any>;
-
+// Consider moving this to a utilities file
+function formatDate(date: string) {
+  const d = new Date(date);
+  return d.toISOString().split('T')[0]; // This gives you "YYYY-MM-DD" format
+}
 export default function RaceCalendarResults({ calendar }: RaceCalendarProps) {
-  function formatDate(date: string) {
-    const d = new Date(date);
-    const year = d.getFullYear();
-    const month = d.getMonth() + 1;
-    const day = d.getDate();
-    return `${day}-${month}-${year}`;
-  }
-
-  const currentDate = new Date().toISOString();
-
+  const currentDate = new Date();
   return (
     <div className="container mx-auto my-6 flex justify-around">
       <div className="overflow-x-auto w-full">
@@ -28,54 +23,47 @@ export default function RaceCalendarResults({ calendar }: RaceCalendarProps) {
           </thead>
           <tbody>
             {/* Map through calendar object and add a table row for each */}
-            {calendar?.calendar?.calendarObj?.data.response.map(
-              (race: Record<string, any>, index: number) => {
-                return (
-                  <tr key={index}>
-                    <td>
-                      <div className="flex items-center space-x-3">
-                        <div className="avatar w-16">
-                          <img
-                            src={race.circuit.image}
-                            alt="Avatar Tailwind CSS Component"
-                            className="bg-gray-200 rounded-md"
-                          />
-                        </div>
-                        <div>
-                          <div className="font-bold">
-                            {race.competition.name}
-                          </div>
-                          <div className="text-sm opacity-50">
-                            {race.circuit.name}
-                          </div>
+            {calendar?.calendarObj?.response?.map((race) => {
+              const raceDate = new Date(race.date);
+              const btnClass =
+                raceDate > currentDate ? 'btn-disabled' : 'btn-primary';
+              return (
+                <tr key={race.id}>
+                  <td>
+                    <div className="flex items-center space-x-3">
+                      <div className="avatar w-16">
+                        <img
+                          src={race.circuit.image}
+                          alt={race.circuit.name}
+                          className="bg-gray-200 rounded-md"
+                        />
+                      </div>
+                      <div>
+                        <div className="font-bold">{race.competition.name}</div>
+                        <div className="text-sm opacity-50">
+                          {race.circuit.name}
                         </div>
                       </div>
-                    </td>
-                    <td>
-                      {race.laps.total}
-                      <br />
-                      <span className="badge badge-ghost badge-sm">
-                        {race.distance}
-                      </span>
-                    </td>
-                    <td>{formatDate(race.date)}</td>
-                    <th>
-                      {race.date > currentDate ? (
-                        <button className="btn btn-disabled btn-xs" disabled>
-                          Results
-                        </button>
-                      ) : (
-                        <Link href={`race-results?id=${race.id}`}>
-                          <button className="btn btn-primary btn-xs">
-                            Results
-                          </button>
-                        </Link>
-                      )}
-                    </th>
-                  </tr>
-                );
-              }
-            )}
+                    </div>
+                  </td>
+                  <td>
+                    {race.laps.total}
+                    <br />
+                    <span className="badge badge-ghost badge-sm">
+                      {race.distance}
+                    </span>
+                  </td>
+                  <td>{formatDate(race.date)}</td>
+                  <th>
+                    <Link href={`race-results?id=${race.id}`}>
+                      <button className={`btn ${btnClass} btn-xs`}>
+                        Results
+                      </button>
+                    </Link>
+                  </th>
+                </tr>
+              );
+            })}
           </tbody>
           {/* <!-- foot --> */}
           <tfoot>

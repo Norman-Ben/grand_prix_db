@@ -4,11 +4,8 @@ import RaceResults from '@/schemas/raceResultsSchema';
 
 // Establish a connection to the database
 const mongoDbUri = process.env.MONGODB_URI ?? '';
-const dbOptions: mongoose.ConnectOptions = {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-};
-mongoose.connect(mongoDbUri, dbOptions);
+
+mongoose.connect(mongoDbUri);
 
 export default async function getRaceResults(
   req: NextApiRequest,
@@ -52,7 +49,7 @@ export default async function getRaceResults(
 
     // Create a new qualifying document from API data
     const raceResults = new RaceResults({
-      raceResultsObj: { data: raceResultsData },
+      raceResultsObj: raceResultsData,
       raceId,
       createdAt: new Date(),
     });

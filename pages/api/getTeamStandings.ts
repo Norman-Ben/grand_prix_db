@@ -4,11 +4,8 @@ import TeamStandings from '@/schemas/teamStandingsSchema';
 
 // Establish a connection to the database
 const mongoDbUri = process.env.MONGODB_URI ?? '';
-const dbOptions: mongoose.ConnectOptions = {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-};
-mongoose.connect(mongoDbUri, dbOptions);
+
+mongoose.connect(mongoDbUri);
 
 export default async function getTeamStandings(
   req: NextApiRequest,
@@ -52,7 +49,7 @@ export default async function getTeamStandings(
 
     // Create a new team standings document from API data
     const teamStandings = new TeamStandings({
-      teamStandingsObj: { data: teamStandingsData },
+      teamStandingsObj: teamStandingsData,
       year,
       createdAt: new Date(),
     });
