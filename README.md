@@ -1,38 +1,11 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+**Grand Prix Database:** A web application inspired by IMDB that allows users to see daily F1 news and browse through a database of championship standings and race results.
 
-## Getting Started
+**Project Summary:** A personal passion project inspired by IMDB, this endeavor aimed to create a dynamic Formula 1 statistics database with an engaging, modern UI to deliver up-to-date F1 news, race results, and championship standings. News data is fetched from Microsoft’s Bing API, and the F1 results data comes from a Formula 1 API. To enhance performance and reduce costs, I’ve implemented a caching strategy for API responses using a MongoDB database.
 
-First, run the development server:
+**Project Requirements:** This project’s objective was to create an engaging frontend that displays data from a Formula 1 API and the Bing News API. The interface enables users to select a season, browse through the race calendar, and view qualifying and race results from each event. Users can also examine the driver and constructor standings for each season. To reduce the number of API calls, cut costs, and enhance performance, a MongoDB database was used to cache the JSON data returned by the APIs for a specified period.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+**Justification for Tech Stack:** For the frontend and backend of this application, I selected NextJS. As a full-stack framework, NextJS facilitated the creation of NodeJS serverless functions for the API caching endpoints, which can then be easily called from the React frontend using the NextJS router. This approach also helps keep hosting costs down due to the serverless endpoints on the backend.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+For the API cache database, I initially considered Redis due to its performance benefits. However, as the data I wanted to cache were nested JSON Objects, not supported by Redis’ ‘key-value’ database structure, I decided on MongoDB with Mongoose as the ORM. MongoDB was chosen as it didn’t require saving any relational data, and it allowed setting up a TTL index for the API response data to automatically delete it after a set time, thereby ensuring the cached data remains up-to-date.
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
-
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details. 
+**Project Outcome:** This project has deepened my understanding of NextJS’s full-stack and routing features and the advantages it provides over a vanilla React application. It has also strengthened my knowledge of API response caching to reduce unnecessary HTTP requests, cut down application running costs, and improve application performance for users.
