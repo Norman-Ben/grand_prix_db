@@ -13,4 +13,5 @@ export interface SelectionGridProps {
     ConstructorStandings: CardProps;
     RaceCalendar: CardProps;
   };
+  season: string;
 }

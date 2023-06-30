@@ -2,7 +2,11 @@ import React from 'react';
 import SelectionCard from './SelectionCard';
 import { SelectionGridProps } from '@/types/SelectionGridTypes';
 
-export default function SelectionGrid({ cardProps }: SelectionGridProps) {
+export default function SelectionGrid({
+  cardProps,
+  season,
+}: SelectionGridProps) {
+  console.log(season);
   return (
     <>
       <div className="container mx-auto my-6 flex justify-around">
@@ -23,7 +27,11 @@ export default function SelectionGrid({ cardProps }: SelectionGridProps) {
             title={cardProps.RaceCalendar.title}
             imgUrl={cardProps.RaceCalendar.imgUrl}
             btnText={cardProps.RaceCalendar.btnText}
-            link={cardProps.RaceCalendar.link}
+            link={
+              !season
+                ? cardProps.RaceCalendar.link
+                : `${cardProps.RaceCalendar.link}?season=${season}`
+            }
           />
         </div>
       </div>

@@ -10,7 +10,8 @@ import BackButton from '@/components/BackButton';
 import { useState } from 'react';
 
 export default function SeasonDatabase() {
-  const [season, setSeason] = useState('');
+  const [season, setSeason] = useState('2021');
+  console.log(season);
 
   return (
     <>
@@ -31,7 +32,7 @@ export default function SeasonDatabase() {
           <BackButton />
           <SeasonSelector season={season} setSeason={setSeason} />
         </div>
-        <SelectionGrid cardProps={twentyTwoSelectionCards} />
+        <SelectionGrid cardProps={twentyTwoSelectionCards} season={season} />
         <Footer />
       </div>
     </>

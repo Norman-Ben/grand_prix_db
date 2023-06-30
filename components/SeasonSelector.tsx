@@ -14,7 +14,7 @@ export default function SeasonSelect({ season, setSeason }) {
       <option disabled selected>
         Select a season
       </option>
-      <option>2021</option>
+      <option selected>2021</option>
       <option>2020</option>
       <option>2019</option>
       <option>2018</option>
