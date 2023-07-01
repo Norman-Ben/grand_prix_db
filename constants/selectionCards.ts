@@ -46,3 +46,24 @@ export const twentyThreeSelectionCards = {
     link: '/2023season/race-calendar',
   },
 };
+
+export const seasonDatabaseSelectionCards = {
+  DriverStandings: {
+    title: 'Driver Standings',
+    imgUrl: DriverStandings23,
+    btnText: 'View Standings',
+    link: 'SeasonDatabase/driver-standings',
+  },
+  ConstructorStandings: {
+    title: 'Constructor Standings',
+    imgUrl: ConstructorStandings23,
+    btnText: 'View Standings',
+    link: 'SeasonDatabase/team-standings',
+  },
+  RaceCalendar: {
+    title: 'Race Calendar',
+    imgUrl: RaceCalendar23,
+    btnText: 'View Calendar',
+    link: 'SeasonDatabase/race-calendar',
+  },
+};

@@ -4,14 +4,13 @@ import Footer from '@/components/Footer';
 import SelectionGrid from '@/components/SelectionGrid';
 import SeasonSelector from '@/components/SeasonSelector';
 import Hero from '@/components/Hero';
-import { twentyTwoHeroProps } from '@/constants/heroes';
-import { twentyTwoSelectionCards } from '@/constants/selectionCards';
+import { seasonDatabaseHeroProps } from '@/constants/heroes';
+import { seasonDatabaseSelectionCards } from '@/constants/selectionCards';
 import BackButton from '@/components/BackButton';
 import { useState } from 'react';
 
 export default function SeasonDatabase() {
   const [season, setSeason] = useState('2021');
-  console.log(season);
 
   return (
     <>
@@ -24,15 +23,18 @@ export default function SeasonDatabase() {
       <div className="container mx-auto">
         <Navbar />
         <Hero
-          title={twentyTwoHeroProps.title}
-          img={twentyTwoHeroProps.img}
-          description={twentyTwoHeroProps.description}
+          title={seasonDatabaseHeroProps.title}
+          img={seasonDatabaseHeroProps.img}
+          description={seasonDatabaseHeroProps.description}
         />
         <div className="flex justify-around items-center">
           <BackButton />
           <SeasonSelector season={season} setSeason={setSeason} />
         </div>
-        <SelectionGrid cardProps={twentyTwoSelectionCards} season={season} />
+        <SelectionGrid
+          cardProps={seasonDatabaseSelectionCards}
+          season={season}
+        />
         <Footer />
       </div>
     </>

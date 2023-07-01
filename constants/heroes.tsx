@@ -24,3 +24,10 @@ export const twentyThreeHeroProps = {
   img: HeroPic23,
   description: '',
 };
+
+export const seasonDatabaseHeroProps = {
+  title: 'Season Database',
+  img: HeroPic,
+  description:
+    'Please select a season below to browse standings and results from our database.',
+};

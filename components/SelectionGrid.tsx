@@ -6,7 +6,6 @@ export default function SelectionGrid({
   cardProps,
   season,
 }: SelectionGridProps) {
-  console.log(season);
   return (
     <>
       <div className="container mx-auto my-6 flex justify-around">
@@ -15,13 +14,21 @@ export default function SelectionGrid({
             title={cardProps.DriverStandings.title}
             imgUrl={cardProps.DriverStandings.imgUrl}
             btnText={cardProps.DriverStandings.btnText}
-            link={cardProps.DriverStandings.link}
+            link={
+              !season
+                ? cardProps.DriverStandings.link
+                : `${cardProps.DriverStandings.link}?season=${season}`
+            }
           />
           <SelectionCard
             title={cardProps.ConstructorStandings.title}
             imgUrl={cardProps.ConstructorStandings.imgUrl}
             btnText={cardProps.ConstructorStandings.btnText}
-            link={cardProps.ConstructorStandings.link}
+            link={
+              !season
+                ? cardProps.ConstructorStandings.link
+                : `${cardProps.ConstructorStandings.link}?season=${season}`
+            }
           />
           <SelectionCard
             title={cardProps.RaceCalendar.title}

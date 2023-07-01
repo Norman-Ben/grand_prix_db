@@ -4,7 +4,6 @@ export default function SeasonSelect({ season, setSeason }) {
   const handleChange = (e) => {
     setSeason(e.target.value);
   };
-  console.log(season);
 
   return (
     <select
