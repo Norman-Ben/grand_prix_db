@@ -8,6 +8,7 @@ export default function Footer() {
         <Link href="/">F1 News</Link>
         <Link href="/2023season">2023 Season</Link>
         <Link href="/2022season">2022 Season</Link>
+        <Link href="/SeasonDatabase">Season Database</Link>
       </nav>
       <div>
         <p>

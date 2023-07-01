@@ -1,6 +1,7 @@
 import HeroPic from '../public/assets/Hero.jpg';
 import HeroPic22 from '../public/assets/Hero22.jpg';
 import HeroPic23 from '../public/assets/Hero23.jpg';
+import HeroSeasonDb from '../public/assets/HeroSeasonDb.jpeg';
 
 export const homeHeroProps = {
   title: (
@@ -27,7 +28,7 @@ export const twentyThreeHeroProps = {
 
 export const seasonDatabaseHeroProps = {
   title: 'Season Database',
-  img: HeroPic,
+  img: HeroSeasonDb,
   description:
     'Please select a season below to browse standings and results from our database.',
 };

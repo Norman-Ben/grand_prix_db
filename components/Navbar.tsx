@@ -86,6 +86,9 @@ export default function Navbar() {
           <li>
             <Link href="/2022season">2022 Season</Link>
           </li>
+          <li>
+            <Link href="/SeasonDatabase">Season Database</Link>
+          </li>
         </ul>
       </nav>
     </>

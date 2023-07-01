@@ -4,6 +4,9 @@ import RaceCalendar22 from '../public/assets/RaceCalendar22.jpg';
 import DriverStandings23 from '../public/assets/DriverStandings23.jpg';
 import ConstructorStandings23 from '../public/assets/ConstructorsStandings23.jpg';
 import RaceCalendar23 from '../public/assets/RaceCalendar23.jpg';
+import DriverStandingsSeasonDb from '../public/assets/DriverStandingsSeasonDb.jpeg';
+import ConstructorStandingsSeasonDb from '../public/assets/ConstructorsStandingsSeasonDb.webp';
+import RaceCalendarSeasonDb from '../public/assets/RaceCalendarSeasonDb.jpeg';
 
 export const twentyTwoSelectionCards = {
   DriverStandings: {
@@ -50,19 +53,19 @@ export const twentyThreeSelectionCards = {
 export const seasonDatabaseSelectionCards = {
   DriverStandings: {
     title: 'Driver Standings',
-    imgUrl: DriverStandings23,
+    imgUrl: DriverStandingsSeasonDb,
     btnText: 'View Standings',
     link: 'SeasonDatabase/driver-standings',
   },
   ConstructorStandings: {
     title: 'Constructor Standings',
-    imgUrl: ConstructorStandings23,
+    imgUrl: ConstructorStandingsSeasonDb,
     btnText: 'View Standings',
     link: 'SeasonDatabase/team-standings',
   },
   RaceCalendar: {
     title: 'Race Calendar',
-    imgUrl: RaceCalendar23,
+    imgUrl: RaceCalendarSeasonDb,
     btnText: 'View Calendar',
     link: 'SeasonDatabase/race-calendar',
   },
