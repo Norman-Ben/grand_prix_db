@@ -7,7 +7,7 @@ import { twentyThreeHeroProps } from '@/constants/heroes';
 import { twentyThreeSelectionCards } from '@/constants/selectionCards';
 import BackButton from '@/components/BackButton';
 
-export default function TwentyTwoSeason() {
+export default function TwentyThreeSeason() {
   return (
     <>
       <Head>
