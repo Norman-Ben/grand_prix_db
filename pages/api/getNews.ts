@@ -19,12 +19,11 @@ export default async function getNews(
       const fetchOptions = {
         method: 'GET',
         headers: {
-          'X-RapidAPI-Key': process.env.RAPID_API_KEY!,
-          'X-RapidAPI-Host': process.env.BING_API_HOST!,
+          'Ocp-Apim-Subscription-Key': process.env.BING_NEWS_API_KEY!,
         } as Record<string, string>,
       };
       const response = await fetch(
-        'https://bing-news-search1.p.rapidapi.com/news/search?q=Formula%201&count=6&mkt=en-GB&freshness=Day&originalImg=true&textFormat=Raw&safeSearch=Off',
+        process.env.BING_NEWS_API_URL!,
         fetchOptions
       );
       if (!response.ok) {
